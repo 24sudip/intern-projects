@@ -5,6 +5,11 @@ if (isset($_SESSION['login_email'])) {
 } else {
     header('location: error.php');
 }
+$email = $_SESSION['login_email'];
+$db_connect = mysqli_connect('localhost', 'root','','first_project');
+$user_details_query = "SELECT * FROM users WHERE email='$email'";
+$after_details_query = mysqli_query($db_connect, $user_details_query);
+$after_details_assoc = mysqli_fetch_assoc($after_details_query);
 ?>
 <!doctype html>
 <html lang="en">
@@ -20,12 +25,19 @@ if (isset($_SESSION['login_email'])) {
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Welcome</h1>
-                    <h2>Your Email: <?= $_SESSION['login_email'] ?></h2>
+                    <h2>Your Name: <?= $after_details_assoc['user_name'] ?></h2>
+                    <h2>Your Email: <?= $after_details_assoc['email'] ?></h2>
                     <a href="logout.php" class="btn btn-info">Logout</a>
-                    <!-- <div class="alert alert-success">
-                    </div> -->
-                    <?php  ?>
-                    <?php  ?>
+                </div>
+                <div class="col-lg-12 mt-5">
+                  <div class="row">
+                    <div class="col-lg-1">
+                      <a href="add_user.php" class="btn btn-sm btn-primary">Add User</a>
+                    </div>
+                    <div class="col-lg-1">
+                      <a href="view_user.php" class="btn btn-sm btn-primary">User List</a>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>

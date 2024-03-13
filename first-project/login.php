@@ -21,7 +21,7 @@ session_start();
                             </div>
                         <?php } ?>
 						<div class="card-header bg-success">
-                            <span class="text-white">Login</span>						
+                            <span class="text-white">Admin Login</span>						
 						</div>
 						<div class="card-body">
 							<form action="login_post.php" method="post">

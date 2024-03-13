@@ -16,7 +16,7 @@ session_start();
 				<div class="col-lg-6 mt-5">
 					<div class="card">
 						<div class="card-header bg-success">
-							<span class="text-white">Register</span>						
+							<span class="text-white">Admin Registration</span>						
 						</div>
 						<div class="card-body">
 							<form action="register_post.php" method="post">
@@ -54,7 +54,7 @@ session_start();
 									<?php } ?>
 								</div>
 								<div class="mb-3">
-									<input class="form-control" type="text" name="role" placeholder="Role" value="admin">
+									<input class="form-control" type="text" name="role" value="admin">
 								</div>
 								<button type="submit" class="btn btn-primary">Register</button>
 							</form>
