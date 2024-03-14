@@ -45,7 +45,6 @@ require_once('header.php');
                 <div class="mb-3">
                     <input class="form-control" type="text" name="role" value="user">
                 </div>
-                <input class="form-control" type="hidden" name="delete_status" value="1">
                 <button type="submit" class="btn btn-primary">Register</button>
             </form>
         </div>

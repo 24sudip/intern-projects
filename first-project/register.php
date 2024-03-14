@@ -1,5 +1,12 @@
 <?php
 session_start();
+$db_connect = mysqli_connect('localhost', 'root','','first_project');
+$admin_confirm_query = "SELECT COUNT(*) AS result FROM users WHERE role='admin'";
+$after_confirm_query = mysqli_query($db_connect, $admin_confirm_query);
+$after_confirm_assoc = mysqli_fetch_assoc($after_confirm_query);
+if ($after_confirm_assoc['result'] == 1) {
+	header('location: error_two.php');
+}
 ?>
 <!doctype html>
 <html lang="en">
