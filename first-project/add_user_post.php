@@ -6,7 +6,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $en_password = md5($password);
 $role = 'user';
-$delete_status = 'hard';
+$delete_status = '0';
 $flag = false;
 
 if ($user_name) {

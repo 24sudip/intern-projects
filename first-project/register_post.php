@@ -6,6 +6,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $en_password = md5($password);
 $role = 'admin';
+$delete_status = 0;
 $flag = false;
 
 if ($user_name) {
@@ -36,8 +37,7 @@ if ($flag) {
     // echo $email."<br>";
     // echo $en_password."<br>";
     $db_connect = mysqli_connect('localhost', 'root','','first_project');
-    $user_insert_query = "INSERT INTO users (user_name, email, password, role) VALUES ('$user_name','$email','$en_password',
-    '$role')";
+    $user_insert_query = "INSERT INTO users (user_name, email, password, role, delete_status) VALUES ('$user_name','$email','$en_password','$role','$delete_status')";
     mysqli_query($db_connect, $user_insert_query);
     $_SESSION['register_email'] = "$email";
     $_SESSION['register_success'] = "$user_name Has Registered Successfully";
