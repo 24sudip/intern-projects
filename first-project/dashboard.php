@@ -5,6 +5,7 @@ if (isset($_SESSION['login_email'])) {
 } else {
     header('location: error.php');
 }
+$_SESSION['dashboard_confirm'] = 'Yes';
 $email = $_SESSION['login_email'];
 $db_connect = mysqli_connect('localhost', 'root','','first_project');
 $user_details_query = "SELECT * FROM users WHERE email='$email'";
@@ -12,9 +13,11 @@ $after_details_query = mysqli_query($db_connect, $user_details_query);
 $after_details_assoc = mysqli_fetch_assoc($after_details_query);
 
 if ($after_details_assoc['role'] == 'user') {
+    $_SESSION['dashboard_role'] = 'user';
     $_SESSION['user_id'] = $after_details_assoc['user_id'];
     header('location: user_dashboard.php');
 } else {
+    $_SESSION['dashboard_role'] = 'admin';
     echo "<h1>For Admin</h1>";
 }
 ?>

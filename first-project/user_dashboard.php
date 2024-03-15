@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (isset($_SESSION['login_email'])) {
+    echo "<h2>Valid Account</h2>";
+} else {
+    header('location: error.php');
+}
 $user_id = $_SESSION['user_id'];
 $db_connect = mysqli_connect('localhost', 'root','','first_project');
 $user_details_query = "SELECT * FROM users WHERE user_id='$user_id'";

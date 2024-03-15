@@ -1,5 +1,12 @@
 <?php
 session_start();
+if (isset($_SESSION['dashboard_confirm'])) {
+    if ($_SESSION['dashboard_role'] == 'user') {
+        header('location:user_dashboard.php');
+    } else if($_SESSION['dashboard_role'] == 'admin') {
+        header('location:dashboard.php');
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -19,7 +26,7 @@ session_start();
                             <div class="alert alert-success mb-3">
                                 <?= $_SESSION['register_success'] ?>
                             </div>
-                        <?php } ?>
+                        <?php } unset($_SESSION['register_success']); ?>
 						<div class="card-header bg-success">
                             <span class="text-white">Admin Login</span>						
 						</div>
@@ -35,7 +42,7 @@ session_start();
                                         <div class="alert alert-danger">
                                             <?= $_SESSION['login_error'] ?>
                                         </div>
-                                    <?php } ?>
+                                    <?php } unset($_SESSION['login_error']); ?>
 								</div>
 								<div class="mb-3">
 									<input class="form-control" type="password" name="password" placeholder="Password">
@@ -43,7 +50,7 @@ session_start();
                                         <div class="alert alert-danger">
                                             <?= $_SESSION['match_error'] ?>
                                         </div>
-                                    <?php } ?>
+                                    <?php } unset($_SESSION['match_error']); ?>
 								</div>
 								<button type="submit" class="btn btn-primary">Login</button>
 							</form>
@@ -56,6 +63,3 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
-<?php
-session_unset();
-?>
