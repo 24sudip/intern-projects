@@ -29,7 +29,7 @@ if (isset($_SESSION['commissioner_dashboard_confirm'])) {
                             <div class="col-xl-12">
                                 <div class="auth-form">
 									<div class="text-center mb-3">
-										<a href="index.html"><img src="images/logo-full.png" alt=""></a>
+										<a href="index.html"><img src="asset/images/logo-full.png" alt=""></a>
 									</div>
                                     <h2 class="text-center mb-4 text-white">Commissioner Sign in</h2>
                                     <form action="commissioner_login_post.php" method="post">
@@ -50,8 +50,7 @@ if (isset($_SESSION['commissioner_dashboard_confirm'])) {
                                         <div class="text-center">
                                             <button type="submit" class="btn bg-white text-primary btn-block">Sign Me In</button>
                                         </div>
-                                    </form>
-                                    
+                                    </form>                                    
                                 </div>
                             </div>
                         </div>

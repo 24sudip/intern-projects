@@ -1,8 +1,8 @@
 <?php
 session_start();
 $name = $_POST['name'];
-$protik_name = $_POST['protik_name'];
-$election_zila = $_POST['election_zila'];
+$father_name = $_POST['father_name'];
+$zila = $_POST['zila'];
 $flag = false;
 
 if ($name) {
@@ -12,17 +12,38 @@ if ($name) {
     $flag = true;
 }
 
-if ($protik_name) {
-    $_SESSION['old_protik_name'] = $protik_name;
+if ($father_name) {
+    $_SESSION['old_father_name'] = $father_name;
 } else {
-    $_SESSION['protik_name_error'] = "Marka Is Required";
+    $_SESSION['father_name_error'] = "Father's Name Is Required";
     $flag = true;
 }
 
-if ($election_zila) {
-    $_SESSION['old_election_zila'] = $election_zila;
+if ($mother_name) {
+    $_SESSION['old_mother_name'] = $mother_name;
 } else {
-    $_SESSION['election_zila_error'] = "Election Zila Is Required";
+    $_SESSION['mother_name_error'] = "Mother's Name Is Required";
+    $flag = true;
+}
+
+if ($date_of_birth) {
+    $_SESSION['old_date_of_birth'] = $date_of_birth;
+} else {
+    $_SESSION['date_of_birth_error'] = "Date Of Birth Is Required";
+    $flag = true;
+}
+
+if ($address) {
+    $_SESSION['old_address'] = $address;
+} else {
+    $_SESSION['address_error'] = "address Is Required";
+    $flag = true;
+}
+
+if ($zila) {
+    $_SESSION['old_zila'] = $zila;
+} else {
+    $_SESSION['zila_error'] = "Zila Is Required";
     $flag = true;
 }
 
@@ -32,11 +53,11 @@ if (!$_FILES['protik_photo']['name']) {
 }
 
 if ($flag == true) {
-    header('location: prarthi_register.php');
+    header('location: voter_register.php');
 } else {
     $db_connect = mysqli_connect('localhost', 'root', '', 'second_project');
-    $prarthi_insert_query = "INSERT INTO prarthis (name, protik_name, election_zila, gotten_vote) VALUES ('$name','$protik_name', '$election_zila', '0')";
-    $prarthi_insert_final = mysqli_query($db_connect, $prarthi_insert_query);
+    $voter_insert_query = "INSERT INTO voters (name, father_name, mother_name, date_of_birth, zila, delete_status) VALUES ('$name','$father_name','$mother_name','$date_of_birth','$zila', '0')";
+    $prarthi_insert_final = mysqli_query($db_connect, $voter_insert_query);
 
     $protik_photo_id = mysqli_insert_id($db_connect);
     $photo_name = $_FILES['protik_photo']['name'];

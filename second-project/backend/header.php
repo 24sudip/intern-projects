@@ -782,7 +782,7 @@
 						</a>
                         <ul aria-expanded="false">
                             <li><a href="prarthi_register.php">Add Prarthi</a></li>                           
-                            <li><a href="../asset/app-profile.html">View Prarthi</a></li>                           
+                            <li><a href="view_prarthi.php">View Prarthi</a></li>                           
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
