@@ -24,6 +24,7 @@
                         <p>You may have mistyped the address or the page may have moved.</p>
 						<div>
                             <a class="btn btn-primary" href="../commissioner_login.php">Commissioner Login</a>
+                            <a class="btn btn-primary" href="../voter_login.php">Voter Login</a>
                         </div>
                     </div>
                 </div>

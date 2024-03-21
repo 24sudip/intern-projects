@@ -81,19 +81,6 @@ session_start();
                                             <?php } ?>
                                         </div>
                                         <div class="form-group">
-                                            <label class="mb-1 text-white"><strong>Zila</strong></label>
-                                            <input type="text" class="form-control" placeholder="Zila" name="zila" 
-                                            value="<?php if (isset($_SESSION['old_zila'])) { 
-                                                echo $_SESSION['old_zila']; 
-                                            } ?>">
-
-                                            <?php if (isset($_SESSION['zila_error'])) { ?>
-                                                <div class="alert alert-danger">
-                                                    <?= $_SESSION['zila_error'] ?>
-                                                </div>
-                                            <?php } ?>
-                                        </div>
-                                        <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Address</strong></label>
                                             <input type="text" class="form-control" placeholder="Address" name="address" 
                                             value="<?php if (isset($_SESSION['old_address'])) { 
@@ -107,13 +94,82 @@ session_start();
                                             <?php } ?>
                                         </div>
                                         <div class="form-group">
-                                            <label class="mb-1 text-white"><strong>Name</strong></label>
-                                            <input type="text" class="form-control" placeholder="" name="name">
-                                        </div>
+                                            <label class="mb-1 text-white"><strong>Zila</strong></label>
+                                            <input type="text" class="form-control" placeholder="Zila" name="zila" 
+                                            value="<?php if (isset($_SESSION['old_zila'])) { 
+                                                echo $_SESSION['old_zila']; 
+                                            } ?>">
+
+                                            <?php if (isset($_SESSION['zila_error'])) { ?>
+                                                <div class="alert alert-danger">
+                                                    <?= $_SESSION['zila_error'] ?>
+                                                </div>
+                                            <?php } ?>
+                                        </div>                                       
+                                        <div class="form-group">
+                                            <label class="mb-1 text-white"><strong>Upzila</strong></label>
+                                            <input type="text" class="form-control" placeholder="UpZila" name="upzila" 
+                                            value="<?php if (isset($_SESSION['old_upzila'])) { 
+                                                echo $_SESSION['old_upzila']; 
+                                            } ?>">
+
+                                            <?php if (isset($_SESSION['upzila_error'])) { ?>
+                                                <div class="alert alert-danger">
+                                                    <?= $_SESSION['upzila_error'] ?>
+                                                </div>
+                                            <?php } ?>
+                                        </div>                                       
+                                        <div class="form-group">
+                                            <label class="mb-1 text-white"><strong>Gender</strong></label>
+                                            <select class="form-control" name="gender" 
+                                            value="<?php if (isset($_SESSION['old_gender'])) { 
+                                                echo $_SESSION['old_gender']; 
+                                            } ?>">
+                                                <option value="">Gender</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Others">Others</option>
+                                            </select>
+
+                                            <?php if (isset($_SESSION['gender_error'])) { ?>
+                                                <div class="alert alert-danger">
+                                                    <?= $_SESSION['gender_error'] ?>
+                                                </div>
+                                            <?php } ?>
+                                        </div>                                       
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>Phone Number</strong></label>
-                                            <input type="tel" class="form-control" placeholder="Phone Number" name="phone_number">
+                                            <input type="tel" class="form-control" placeholder="Phone Number"
+                                            name="phone_number" value="<?php if (isset($_SESSION['old_phone_number'])) { 
+                                                echo $_SESSION['old_phone_number']; 
+                                            } ?>">
+
+                                            <?php if (isset($_SESSION['phone_number_error'])) { ?>
+                                                <div class="alert alert-danger">
+                                                    <?= $_SESSION['phone_number_error'] ?>
+                                                </div>
+                                            <?php } ?>
+
+                                            <?php if (isset($_SESSION['phone_match_error'])) { ?>
+                                                <div class="alert alert-danger">
+                                                    <?= $_SESSION['phone_match_error'] ?>
+                                                </div>
+                                            <?php } ?>
                                         </div>
+                                        <div class="form-group">
+                                            <label class="mb-1 text-white"><strong>Email</strong></label>
+                                            <input type="email" class="form-control" placeholder="Email"
+                                            name="email" value="<?php if (isset($_SESSION['old_email'])) { 
+                                                echo $_SESSION['old_email']; 
+                                            } ?>">
+
+                                            <?php if (isset($_SESSION['email_error'])) { ?>
+                                                <div class="alert alert-danger">
+                                                    <?= $_SESSION['email_error'] ?>
+                                                </div>
+                                            <?php } ?>
+                                        </div>
+                                        <label class="mb-1 text-white"><strong>Voter Photo</strong></label>
                                          <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Upload Voter Photo</span>
@@ -128,10 +184,10 @@ session_start();
                                                 <?= $_SESSION['voter_photo_error'] ?>
                                             </div>
                                         <?php } ?>
+                                        <div class="text-center">
+                                            <button type="submit" class="btn bg-white text-primary btn-block">Sign Me Up</button>
+                                        </div>                                    
                                     </form>
-                                    <div class="text-center">
-                                        <button type="submit" class="btn bg-white text-primary btn-block">Sign Me Up</button>
-                                    </div>                                    
                                 </div>
                             </div>
                         </div>

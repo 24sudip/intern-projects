@@ -24,6 +24,7 @@ require_once('header.php');
                             <th scope="col">Marka</th>
                             <th scope="col">Protik Photo</th>
                             <th scope="col">Election Zila</th>
+                            <th scope="col">Gotten Vote</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -35,6 +36,7 @@ require_once('header.php');
                             <td><?= $after_prarthis_item['protik_name']?></td>
                             <td><img src="../asset/upload/protik_photos/<?= $after_prarthis_item['protik_photo'] ?>" style="width: 70px;height: 70px;"></td>
                             <td><?= $after_prarthis_item['election_zila']?></td>
+                            <td><?= $after_prarthis_item['gotten_vote']?></td>
                             <td>                                
                                 <a href="delete_prarthi.php?delete_prarthi_id=<?= $after_prarthis_item['prarthi_id']?>" class="btn btn-danger">Hard-Delete</a>                                
                             </td>

@@ -732,10 +732,24 @@
 							</li>
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="javascript:void(0)" role="button" data-toggle="dropdown">
-                                    <img src="images/profile/17.jpg" width="20" alt=""/>
+									<?php if (isset($_SESSION['voter_login_id'])) {?>								
+										<img src="../asset/upload/voter_photos/<?= $_SESSION['voter_login_photo']?>" width="20"/>
+									<?php } ?>
+									<?php if (isset($_SESSION['commissioner_login_name'])) {?>
+										<img src="../asset/images/1.jpg" width="20"/>
+									<?php } ?>
+
 									<div class="header-info">
-										<span class="text-black"><strong>Peter Parkur</strong></span>
-										<p class="fs-12 mb-0">Super Admin</p>
+										<?php if (isset($_SESSION['voter_login_id'])) {?>								
+											<span class="text-black"><strong><?= $_SESSION['voter_login_name']?></strong></span>
+											<p class="fs-12 mb-0">Voter</p>
+										<?php } ?>
+										<?php if (isset($_SESSION['commissioner_login_name'])) {?>
+											<span class="text-black">
+												<strong><?= $_SESSION['commissioner_login_name']?></strong>
+											</span>
+											<p class="fs-12 mb-0">Commissioner</p>
+										<?php } ?>
 									</div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
@@ -749,7 +763,12 @@
                                     </a>
                                     <a href="../asset/page-login.html" class="dropdown-item ai-icon">
                                         <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-                                        <span><a class="ml-2" href="logout.php">LogOut</a></span>
+										<?php if (isset($_SESSION['voter_login_id'])) {?>								
+											<span><a class="ml-2" href="voter_logout.php">LogOut(as Voter)</a></span>
+										<?php } ?>
+										<?php if (isset($_SESSION['commissioner_login_name'])) {?>
+											<span><a class="ml-2" href="logout.php">LogOut(as Commissioner)</a></span>
+										<?php } ?>
                                     </a>
                                 </div>
                             </li>
@@ -773,18 +792,25 @@
 							<span class="nav-text">Dashboard</span>
 						</a>
                         <ul aria-expanded="false">
-							<li><a href="commissioner_dashboard.php">Dashboard</a></li>							
+							<?php if (isset($_SESSION['voter_login_id'])) {?>								
+								<li><a href="voter_dashboard.php">Voter Dashboard</a></li>							
+							<?php } ?>
+							<?php if (isset($_SESSION['commissioner_login_name'])) {?>
+								<li><a href="commissioner_dashboard.php">Commissioner Dashboard</a></li>
+							<?php } ?>
 						</ul>
                     </li>
-                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-							<i class="flaticon-381-television"></i>
-							<span class="nav-text">Prarthi</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="prarthi_register.php">Add Prarthi</a></li>                           
-                            <li><a href="view_prarthi.php">View Prarthi</a></li>                           
-                        </ul>
-                    </li>
+					<?php if (isset($_SESSION['commissioner_login_name'])) {?>
+						<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+								<i class="flaticon-381-television"></i>
+								<span class="nav-text">Prarthi</span>
+							</a>
+							<ul aria-expanded="false">
+								<li><a href="prarthi_register.php">Add Prarthi</a></li>                           
+								<li><a href="view_prarthi.php">View Prarthi</a></li>                           
+							</ul>
+						</li>
+					<?php } ?>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-381-controls-3"></i>
 							<span class="nav-text">Charts</span>
