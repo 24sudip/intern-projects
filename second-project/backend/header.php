@@ -810,15 +810,16 @@
 								<li><a href="view_prarthi.php">View Prarthi</a></li>                           
 							</ul>
 						</li>
+						<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+								<i class="flaticon-381-controls-3"></i>
+								<span class="nav-text">Voters</span>
+							</a>
+							<ul aria-expanded="false">
+								<li><a href="view_voter.php">View Voters</a></li>                          
+								<li><a href="softdel_voter_list.php">Soft-Deleted Voters</a></li>                          
+							</ul>
+						</li>
 					<?php } ?>
-                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-							<i class="flaticon-381-controls-3"></i>
-							<span class="nav-text">Charts</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="../asset/chart-flot.html">Flot</a></li>                           
-                        </ul>
-                    </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="flaticon-381-internet"></i>
 							<span class="nav-text">Bootstrap</span>
