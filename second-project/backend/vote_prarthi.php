@@ -15,6 +15,7 @@ $voter_id = $_SESSION['voter_login_id'];
 $voter_update_query = "UPDATE voters SET given_vote='yes' WHERE voter_id='$voter_id';";
 mysqli_query($db_connect, $voter_update_query);
 
+$_SESSION['give_vote_success'] = "You Have Given Vote Successfully";
 header('location:voter_dashboard.php');
 
 ?>

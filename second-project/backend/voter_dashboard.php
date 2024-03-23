@@ -14,6 +14,11 @@ require_once('header.php');
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
+                <?php if (isset($_SESSION['give_vote_success'])) { ?>
+                    <div class="alert alert-success">
+                        <?= $_SESSION['give_vote_success'] ?>
+                    </div>
+                <?php } unset($_SESSION['give_vote_success']); ?>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
