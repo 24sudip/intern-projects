@@ -28,10 +28,11 @@ session_start();
 										<a href="#"><img src="asset/images/logo-full.png" alt="logo"></a>
 									</div>
                                     <h2 class="text-center mb-4 text-white">Voter Sign Up</h2>
-                                    <?php if (isset($_SESSION['voter_login_id'])) {?>
+                                    <?php if (isset($_SESSION['voter_login_id']) || isset($_SESSION['commissioner_dashboard_confirm'])) {?>
                                         <h3 class="text-white">Please Logout to Register Again</h3>
                                     <?php } ?>
-                                    <?php if (!isset($_SESSION['voter_login_id'])) {?>
+                                    
+                                    <?php if (!isset($_SESSION['voter_login_id']) && !isset($_SESSION['commissioner_dashboard_confirm'])) {?>
                                         <form action="voter_register_post.php" method="post" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label class="mb-1 text-white"><strong>Name</strong></label>

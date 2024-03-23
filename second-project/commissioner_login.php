@@ -1,6 +1,9 @@
 <!--  -->
 <?php
 session_start();
+if (isset($_SESSION['voter_login_id'])) {
+    header('location: backend/voter_dashboard.php');
+}
 if (isset($_SESSION['commissioner_dashboard_confirm'])) {
     header('location: backend/commissioner_dashboard.php');
 }
