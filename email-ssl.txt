@@ -1,0 +1,36 @@
+//Third-Project
+npm install --save-dev vite laravel-vite-plugin
+php artisan make:migration add_google_id_to_users
+https://github.com/Fahim-Hossain-Munna/KIANTE
+https://github.com/Fahim-Hossain-Munna/DashTrap
+
+//Second-project
+https://cutt.ly/Mw0BqAjB
+https://github.com/Fahim-Hossain-Munna/DashboardTemplate/tree/main/Gymove
+commissioner: commissioner_id, name, phone_number
+	dashboard_info: 
+	list-of-voter-edit-delete-soft-undo,
+	prarthi-registration-delete,
+voter: voter_id, name,father_name,mother_name,date_of_birth,address,zila,upzila,gender,phone_number,email,
+	voter_photo, given_vote,delete_status
+      unique: name,phone_number,email,
+      login_requirement: name,phone_number,
+prarthi: prarthi_id, name, protik_name, protik_photo, election_zila, gotten_vote
+
+//Google form
+https://cutt.ly/Sw0s5AQz
+
+tahsan.cit.bd@gmail.com
+munna.cit.bd@gmail.com
+shohan.cit.bd@gmail.com
+
+Error: MySQL shutdown unexpectedly.
+12:12:29 PM  [mysql] 	This may be due to a blocked port, missing dependencies, 
+12:12:29 PM  [mysql] 	improper privileges, a crash, or a shutdown by another method.
+12:12:29 PM  [mysql] 	Press the Logs button to view error logs and check
+12:12:29 PM  [mysql] 	the Windows Event Viewer for more clues
+12:12:29 PM  [mysql] 	If you need more help, copy and post this
+12:12:29 PM  [mysql] 	entire log window on the forums
+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
+24sudip
+@24Sudip
