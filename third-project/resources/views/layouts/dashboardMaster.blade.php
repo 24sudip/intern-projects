@@ -59,14 +59,7 @@
                         </a>
                     </li>
 
-                    <li class="menu-title">Custom</li>
-
-                    <li class="menu-item">
-                        <a class='menu-link waves-effect waves-light' href='{{ route('users') }}'>
-                            <span class="menu-icon"><i class="bx bx-calendar"></i></span>
-                            <span class="menu-text">User's List</span>
-                        </a>
-                    </li>
+                    <li class="menu-title">Blogger</li>
 
                     <li class="menu-item">
                         <a href="#menuExpages" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
@@ -94,7 +87,7 @@
                         <a href="#menuLayouts" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bx-layout"></i></span>
                             <span class="menu-text"> Layouts </span>
-                            <span class="badge bg-blue ms-auto">New</span>
+                            {{-- <span class="badge bg-blue ms-auto">New</span> --}}
                         </a>
                         <div class="collapse" id="menuLayouts">
                             <ul class="sub-menu">
@@ -113,19 +106,20 @@
                         </div>
                     </li>
 
-                    <li class="menu-title">Components</li>
+                    @if (Auth::user()->role == 'admin')
+                    <li class="menu-title">Admin</li>
 
                     <li class="menu-item">
                         <a href="#menuComponentsui" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bx-cookie"></i></span>
-                            <span class="menu-text"> UI Elements </span>
+                            <span class="menu-text">Category</span>
                             <span class="menu-arrow"></span>
                         </a>
                         <div class="collapse" id="menuComponentsui">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a class='menu-link' href='ui-alerts.html'>
-                                        <span class="menu-text">Alerts</span>
+                                    <a class='menu-link' href='{{ route('category.create') }}'>
+                                        <span class="menu-text">Add Category</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
@@ -138,10 +132,17 @@
                     </li>
 
                     <li class="menu-item">
+                        <a class='menu-link waves-effect waves-light' href='{{ route('users') }}'>
+                            <span class="menu-icon"><i class="bx bx-calendar"></i></span>
+                            <span class="menu-text">User's List</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
                         <a href="#menuExtendedui" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bx-briefcase-alt-2"></i></span>
                             <span class="menu-text"> Components </span>
-                            <span class="badge bg-info ms-auto">Hot</span>
+                            {{-- <span class="badge bg-info ms-auto">Hot</span> --}}
                         </a>
                         <div class="collapse" id="menuExtendedui">
                             <ul class="sub-menu">
@@ -339,6 +340,7 @@
                             </ul>
                         </div>
                     </li>
+                    @endif
                 </ul>
             </div>
         </div>
