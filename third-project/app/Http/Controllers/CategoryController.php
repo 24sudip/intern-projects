@@ -20,7 +20,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.category.create', [
+            'categories'=>Category::all(),
+        ]);
     }
 
     /**
@@ -28,7 +30,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category_name'=>'required|unique:categories',
+        ]);
+        Category::insert([
+            'category_name'=>$request->category_name,
+            'created_at'=>now(),
+        ]);
+        return back()->with('CtAdMsg','Category Added Successfully');
     }
 
     /**
@@ -42,17 +51,21 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        Category::find($id)->update([
+            'category_name'=>$request->category_name,
+        ]);
+        return back()->with('CtEdtMsg','Category Edited Successfully');
     }
 
     /**
@@ -60,6 +73,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return back();
     }
 }

@@ -64,19 +64,19 @@
                     <li class="menu-item">
                         <a href="#menuExpages" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bx-file"></i></span>
-                            <span class="menu-text"> Extra Pages </span>
+                            <span class="menu-text">Blog</span>
                             <span class="menu-arrow"></span>
                         </a>
                         <div class="collapse" id="menuExpages">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a class='menu-link' href='pages-starter.html'>
-                                        <span class="menu-text">Starter</span>
+                                    <a class='menu-link' href='{{ route('blog.create') }}'>
+                                        <span class="menu-text">Add Blog</span>
                                     </a>
                                 </li>
                                 <li class="menu-item">
                                     <a class='menu-link' href='pages-invoice.html'>
-                                        <span class="menu-text">Invoice</span>
+                                        <span class="menu-text">View Blog</span>
                                     </a>
                                 </li>
                             </ul>
@@ -120,11 +120,6 @@
                                 <li class="menu-item">
                                     <a class='menu-link' href='{{ route('category.create') }}'>
                                         <span class="menu-text">Add Category</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a class='menu-link' href='ui-buttons.html'>
-                                        <span class="menu-text">Buttons</span>
                                     </a>
                                 </li>
                             </ul>

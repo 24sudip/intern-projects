@@ -52,7 +52,9 @@ class UserController extends Controller
 
     function UpdateProfilePhoto(Request $request){
         if ($request->hasFile('profile_photo')) {
-            @unlink(public_path('upload/profile_photos/'.Auth::user()->profile_photo));
+            if (Auth::user()->profile_photo) {
+                @unlink(public_path('upload/profile_photos/'.Auth::user()->profile_photo));
+            }
             $manager = new ImageManager(new Driver());
             $img_extension = $request->file('profile_photo')->getClientOriginalExtension();
             $new_name = Auth::id().".".$img_extension;

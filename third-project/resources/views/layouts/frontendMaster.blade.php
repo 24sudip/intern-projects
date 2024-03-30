@@ -72,10 +72,12 @@
 				<div class="collapse navbar-collapse">
 					<!-- menus -->
 					<ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+							<a class="nav-link" href="{{ route('blogger.home') }}">Home</a>
+						</li>
 						<li class="nav-item dropdown active">
-							<a class="nav-link dropdown-toggle" href="index.html">Home</a>
+							<a class="nav-link dropdown-toggle" href="index.html">Pages</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="index.html">Magazine</a></li>
 								<li><a class="dropdown-item" href="personal.html">Personal</a></li>
 								<li><a class="dropdown-item" href="personal-alt.html">Personal Alt</a></li>
 								<li><a class="dropdown-item" href="minimal.html">Minimal</a></li>
@@ -90,22 +92,19 @@
 						<li class="nav-item">
 							<a class="nav-link" href="{{ url('/login') }}">Login</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ url('/register') }}">Register</a>
-						</li>
                         @endauth
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#">Pages</a>
+							<a class="nav-link dropdown-toggle" href="category.html">Category</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="category.html">Category</a></li>
 								<li><a class="dropdown-item" href="blog-single.html">Blog Single</a></li>
 								<li><a class="dropdown-item" href="blog-single-alt.html">Blog Single Alt</a></li>
-								<li><a class="dropdown-item" href="about.html">About</a></li>
-								<li><a class="dropdown-item" href="contact.html">Contact</a></li>
 							</ul>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="contact.html">Contact</a>
+							<a class="nav-link" href="{{ route('about') }}">About</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('contact') }}">Contact</a>
 						</li>
 					</ul>
 				</div>

@@ -1,8 +1,5 @@
-{{--  --}}
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light" data-menu-color="brand" data-topbar-color="light">
-
-
 <!-- Mirrored from myrathemes.com/dashtrap/pages-register by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Mar 2024 03:40:33 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
@@ -114,7 +111,5 @@
     <script src="{{ asset('dashboard_assets') }}/js/app.js"></script>
 
 </body>
-
-
 <!-- Mirrored from myrathemes.com/dashtrap/pages-register by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Mar 2024 03:40:33 GMT -->
 </html>
