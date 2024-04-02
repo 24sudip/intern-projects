@@ -72,16 +72,10 @@
 				<div class="collapse navbar-collapse">
 					<!-- menus -->
 					<ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-							<a class="nav-link" href="{{ route('blogger.home') }}">Home</a>
-						</li>
 						<li class="nav-item dropdown active">
-							<a class="nav-link dropdown-toggle" href="index.html">Pages</a>
+							<a class="nav-link dropdown-toggle" href="{{ route('blogger.home') }}">Home</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="personal.html">Personal</a></li>
-								<li><a class="dropdown-item" href="personal-alt.html">Personal Alt</a></li>
-								<li><a class="dropdown-item" href="minimal.html">Minimal</a></li>
-								<li><a class="dropdown-item" href="classic.html">Classic</a></li>
+								<li><a class="dropdown-item" href="personal.html">All Blogs</a></li>
 							</ul>
 						</li>
                         @auth()
@@ -102,6 +96,15 @@
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('about') }}">About</a>
+						</li>
+                        <li class="nav-item dropdown active">
+							<a class="nav-link dropdown-toggle" href="index.html">Pages</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="personal.html">Personal</a></li>
+								<li><a class="dropdown-item" href="personal-alt.html">Personal Alt</a></li>
+								<li><a class="dropdown-item" href="minimal.html">Minimal</a></li>
+								<li><a class="dropdown-item" href="classic.html">Classic</a></li>
+							</ul>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('contact') }}">Contact</a>

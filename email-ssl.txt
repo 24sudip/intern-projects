@@ -1,6 +1,6 @@
 ====
 category: category_name,page_status;
-blog: blog_title,blogger_id,category_id,blog_photo,blog_intro,blog_detail,blog_end,page_view(0),
+blog: blog_title,blogger_id,category_id,blog_photo,blog_intro,blog_detail,page_view(0),
 	feature_status(Not-Featured),
 group(Inventory): Celebration(Group),personal-slider(Link>Group),personal(Link),minimal(Link),classic-slider(Link>Group),classic(Link),
 Editors-Pick(Group),

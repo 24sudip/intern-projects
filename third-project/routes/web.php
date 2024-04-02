@@ -22,6 +22,7 @@ Route::resource('category', CategoryController::class);
 
 // Blog part
 Route::resource('blog', BlogController::class);
+Route::post('/blog/banner/{blog_id}', [BlogController::class, 'blogBanner'])->name('blog.banner');
 // Blog part
 
 // User

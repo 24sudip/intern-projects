@@ -1,8 +1,6 @@
 {{--  --}}
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light" data-menu-color="brand" data-topbar-color="light">
-
-
 <!-- Mirrored from myrathemes.com/dashtrap/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Mar 2024 03:40:24 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
@@ -16,6 +14,18 @@
     <link rel="shortcut icon" href="{{ asset('dashboard_assets') }}/images/favicon.ico">
 
     <link href="{{ asset('dashboard_assets') }}/libs/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
+    <!-- third party css -->
+    <link href="{{ asset('dashboard_assets') }}/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('dashboard_assets') }}/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('dashboard_assets') }}/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('dashboard_assets') }}/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <!-- third party css end -->
+
+    <!-- Plugins css -->
+    <link href="{{ asset('dashboard_assets') }}/libs/quill/quill.core.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('dashboard_assets') }}/libs/quill/quill.bubble.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('dashboard_assets') }}/libs/quill/quill.snow.css" rel="stylesheet" type="text/css" />
 
     <!-- App css -->
     <link href="{{ asset('dashboard_assets') }}/css/style.min.css" rel="stylesheet" type="text/css">
@@ -52,9 +62,9 @@
                     <li class="menu-title">Menu</li>
 
                     <li class="menu-item">
-                        <a class='menu-link waves-effect waves-light' href='{{ route('home') }}'>
+                        <a class='menu-link waves-effect waves-light' href='{{ route('blogger.home') }}'>
                             <span class="menu-icon"><i class="bx bx-home-smile"></i></span>
-                            <span class="menu-text"> Dashboards </span>
+                            <span class="menu-text"> Website </span>
                             <span class="badge bg-primary rounded ms-auto">01</span>
                         </a>
                     </li>
@@ -75,8 +85,8 @@
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a class='menu-link' href='pages-invoice.html'>
-                                        <span class="menu-text">View Blog</span>
+                                    <a class='menu-link' href='{{ route('blog.index') }}'>
+                                        <span class="menu-text">My Blogs</span>
                                     </a>
                                 </li>
                             </ul>
@@ -671,8 +681,31 @@
     <!-- Dashboard init-->
     <script src="{{ asset('dashboard_assets') }}/js/pages/dashboard.js"></script>
 
+    <!-- Plugins js -->
+    <script src="{{ asset('dashboard_assets') }}/libs/quill/quill.min.js"></script>
+
+    <!-- Demo js-->
+    <script src="{{ asset('dashboard_assets') }}/js/pages/form-quilljs.js"></script>
+
+    <!-- third party js -->
+    <script src="{{ asset('dashboard_assets') }}/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('dashboard_assets') }}/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="{{ asset('dashboard_assets') }}/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('dashboard_assets') }}/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+    <script src="{{ asset('dashboard_assets') }}/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('dashboard_assets') }}/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+    <script src="{{ asset('dashboard_assets') }}/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="{{ asset('dashboard_assets') }}/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="{{ asset('dashboard_assets') }}/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="{{ asset('dashboard_assets') }}/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="{{ asset('dashboard_assets') }}/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+    <script src="{{ asset('dashboard_assets') }}/libs/pdfmake/build/pdfmake.min.js"></script>
+    <script src="{{ asset('dashboard_assets') }}/libs/pdfmake/build/vfs_fonts.js"></script>
+    <!-- third party js ends -->
+
+    <!-- Datatables js -->
+    <script src="{{ asset('dashboard_assets') }}/js/pages/datatables.js"></script>
+
 </body>
-
-
 <!-- Mirrored from myrathemes.com/dashtrap/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Mar 2024 03:40:30 GMT -->
 </html>
