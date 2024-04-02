@@ -17,7 +17,7 @@ class BlogController extends Controller
     public function index()
     {
         return view('blog.index',[
-            'blogs'=>Blog::where('blogger_id', Auth::id())->get(),
+            'blogs'=>Blog::where('blogger_id', Auth::id())->latest()->get(),
         ]);
     }
 
@@ -72,31 +72,59 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        return view('blog.show');
+        return view('blog.show', compact('blog'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Blog $blog)
+    public function edit($id)
     {
-        //
+        $blog = Blog::find($id);
+        return view('blog.edit', compact('blog'), [
+            'categories'=>Category::get(['id', 'category_name']),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, $id)
     {
-        //
+        Blog::find($id)->update([
+            'category_id'=>$request->category_id,
+            'blog_title'=>$request->blog_title,
+            'blog_intro'=>$request->blog_intro,
+            'blog_detail'=>$request->blog_detail,
+            'blog_icon'=>$request->blog_icon,
+        ]);
+        if ($request->hasFile('blog_photo')) {
+            @unlink(public_path('upload/blog_photos/'.Blog::find($id)->blog_photo));
+            $manager = new ImageManager(new Driver());
+            $img_extension = $request->file('blog_photo')->getClientOriginalExtension();
+            $new_name = date('YmdHis')."-". Auth::id().".".$img_extension;
+            $img = $manager->read($request->file('blog_photo'));
+            // ->resize(370,250)
+            if ($img_extension == "png") {
+                $img->toPng(80)->save(base_path('public/upload/blog_photos/'.$new_name));
+            } else {
+                $img->toJpeg(80)->save(base_path('public/upload/blog_photos/'.$new_name));
+            }
+            Blog::find($id)->update([
+                'blog_photo'=>$new_name,
+            ]);
+        }
+        return back()->with('BlgEdtMsg','Blog Edited Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Blog $blog)
+    public function destroy($id)
     {
-        //
+        @unlink(public_path('upload/blog_photos/'.Blog::find($id)->blog_photo));
+        Blog::find($id)->delete();
+        return back();
     }
 
     function blogBanner(Request $request, $blog_id)

@@ -10,4 +10,44 @@
         </ol>
     </nav>
 </div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table mb-0">
+                    <tbody>
+                        <tr>
+                            <td>Category</td>
+                            <td>{{ $blog->relation_to_category->category_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Blog Title</td>
+                            <td>{{ $blog->blog_title }}</td>
+                        </tr>
+                        <tr>
+                            <td>Blog Thumbnail</td>
+                            <td><img src="{{ asset('upload/blog_photos') }}/{{ $blog->blog_photo }}" alt="thumbnail"></td>
+                        </tr>
+                        <tr>
+                            <td>Blog Introduction</td>
+                            <td>{{ $blog->blog_intro }}</td>
+                        </tr>
+                        <tr>
+                            <td>Blog Detail</td>
+                            <td>
+                                <div id="snow-editor">
+                                    {!! $blog->blog_detail !!}
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let myInput = document.querySelector("input");
+    myInput.style.visibility = "none";
+</script>
 @endsection

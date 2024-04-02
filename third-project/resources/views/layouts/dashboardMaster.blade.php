@@ -146,19 +146,15 @@
                     <li class="menu-item">
                         <a href="#menuExtendedui" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bx-briefcase-alt-2"></i></span>
-                            <span class="menu-text"> Components </span>
+                            <span class="menu-text"> Tag </span>
+                            <span class="menu-arrow"></span>
                             {{-- <span class="badge bg-info ms-auto">Hot</span> --}}
                         </a>
                         <div class="collapse" id="menuExtendedui">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a class='menu-link' href='components-range-slider.html'>
-                                        <span class="menu-text">Range Slider</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a class='menu-link' href='components-sweet-alert.html'>
-                                        <span class="menu-text">Sweet Alert</span>
+                                    <a class='menu-link' href='{{ route('tag.create') }}'>
+                                        <span class="menu-text">Add Tag</span>
                                     </a>
                                 </li>
                             </ul>

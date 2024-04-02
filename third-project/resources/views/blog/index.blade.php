@@ -21,7 +21,6 @@
                                 <thead>
                                     <tr>
                                         <th>SL</th>
-                                        <th class="sorting" tabindex="0" aria-controls="alternative-page-datatable" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending">Category</th>
                                         <th class="sorting" tabindex="0" aria-controls="alternative-page-datatable" rowspan="1" colspan="1" aria-label="Title: activate to sort column ascending">Title</th>
                                         <th class="sorting" tabindex="0" aria-controls="alternative-page-datatable" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending">Date</th>
                                         <th>Banner Theme</th>
@@ -33,7 +32,6 @@
                                     @foreach ($blogs as $blog)
                                     <tr class="odd">
                                         <td>{{ $loop->iteration }}</td>
-                                        <td tabindex="0">{{ $blog->relation_to_category->category_name }}</td>
                                         <td tabindex="0">{{ $blog->blog_title }}</td>
                                         <td tabindex="0">{{ $blog->created_at }}</td>
                                         <td>
@@ -59,8 +57,13 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('blog.show', $blog->id) }}" class="btn btn-sm btn-primary">Details</a>
-                                            <a href="" class="btn btn-sm btn-success">Edit</a>
-                                            <a href="" class="btn btn-sm btn-danger">Delete</a>
+                                            <a href="{{ route('blog.tag', $blog->id) }}" class="btn btn-sm btn-info">Add Tags</a>
+                                            <a href="{{ route('blog.edit', $blog->id) }}" class="btn btn-sm btn-success">Edit</a>
+                                            <form style="display: inline-block" action="{{ route('blog.destroy', $blog->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach

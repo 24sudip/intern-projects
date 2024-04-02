@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\{HomeController, UserController, FrontendController, CategoryController, BlogController};
+use App\Http\Controllers\{HomeController, UserController, FrontendController, CategoryController, BlogController, TagController};
+use App\Http\Controllers\{TagInventoryController};
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -20,9 +21,15 @@ Route::get('/about', [FrontendController::class, 'About'])->name('about');
 Route::resource('category', CategoryController::class);
 // Category part
 
+// Tag part
+Route::resource('tag', TagController::class);
+// Tag part
+
 // Blog part
 Route::resource('blog', BlogController::class);
 Route::post('/blog/banner/{blog_id}', [BlogController::class, 'blogBanner'])->name('blog.banner');
+Route::get('/blog/tag/{id}', [TagInventoryController::class, 'tag'])->name('blog.tag');
+Route::post('/tag/inventory/store/{id}', [TagInventoryController::class, 'TagInventoryStore'])->name('tag.inventory.store');
 // Blog part
 
 // User
