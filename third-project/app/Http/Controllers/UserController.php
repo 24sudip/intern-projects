@@ -11,6 +11,11 @@ use Intervention\Image\Drivers\Gd\Driver;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     function users(){
         $users = User::where('id','!=', Auth::id())->get();
         $total_user = User::count();

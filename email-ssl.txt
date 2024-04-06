@@ -2,13 +2,35 @@
 category: category_name,page_status;
 blog: blog_title,blogger_id,category_id,blog_photo,blog_intro,blog_detail,page_view(0),
 	feature_status(Not-Featured),
-group(Inventory): Celebration(Group),personal-slider(Link>Group),personal(Link),minimal(Link),classic-slider(Link>Group),classic(Link),
+group(Inventory): Celebration(Group),Personal-Slider(Group),Minimal(Link),Classic-Slider(Group),Classic(Link),
 Editors-Pick(Group),
-link: link_name,link_status,
 tag:tag_name;
 TagInventory:blog_id,tag_id;
-Comment(Inventory):blog_id,comment_text,commentor_id,site_name,commentor_name;
-Reply(Inventory):comment_id,reply_text,replier_id,replier_name;
+Comment(Inventory):blog_id,comment_text,commentor_id;
+Reply(Inventory):comment_id,reply_text,replier_id;
+====
+//Master The Art Of Nature With These 7 Tips-lifestyle
+//5 Easy Ways You Can Turn Future Into Success->inspiration
+//3 Easy Ways To Make Your iPhone Faster->How To->Editor’s Pick->popular-Admin
+//An Incredibly Easy Method That Works For All-culture->Editor’s Pick->popular
+//10 Ways To Immediately Start Selling Furniture->How To-Editor’s Pick-classic->popular
+//15 Unheard Ways To Achieve Greater Walker-lifestyle->Editor’s Pick->popular
+//Facts About Business That Will Help You Success-fashion
+//Here Are 8 Ways To Success Faster
+//Want To Have A More Appealing Tattoo?-inspiration
+//Feel Like A Pro With The Help Of These 7 Tips-inspiration->personal-slider
+//Your Light Is About To Stop Being Relevant-politic->personal-slider-classic
+//The Next 60 Things To Immediately Do About Building-trending
+//Important Thing You Need To Know About Swim->inspiration-personal-slider-classic-slider-Admin
+//Most Burning Questions About Light Lamp->personal-slider-minimal
+//9 Most Awesome Blue Lake With Snow Mountain->personal-slider->classic-slider
+//Open The Gates For Chair By Using These Tips->personal-slider
+//How To Become Better With Building In 1 Month-lifestyle-Admin-minimal-classic
+//The Secrets To Finding Class Tools For Your Dress-fashion-Admin-minimal
+//How I Improved My Fashion Style In One Day-lifestyle
+//Wondering How To Make Your Hair Style Rock?-fashion-minimal
+How To Make More Construction By Doing Less-How To
+Now You Can Have Your Thoughts Done Safely-Lifestyle
 
 //Third-Project
 npm install --save-dev vite laravel-vite-plugin

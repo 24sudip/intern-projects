@@ -164,19 +164,14 @@
                     <li class="menu-item">
                         <a href="#menuIcons" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bx-aperture"></i></span>
-                            <span class="menu-text"> Icons </span>
+                            <span class="menu-text"> Add Group/Link </span>
                             <span class="menu-arrow"></span>
                         </a>
                         <div class="collapse" id="menuIcons">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a class='menu-link' href='icons-feather.html'>
-                                        <span class="menu-text">Feather Icons</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a class='menu-link' href='icons-mdi.html'>
-                                        <span class="menu-text">Material Design Icons</span>
+                                    <a class='menu-link' href='{{ route('group.show') }}'>
+                                        <span class="menu-text">All Blogs</span>
                                     </a>
                                 </li>
                             </ul>
@@ -583,7 +578,7 @@
                                 <!-- item-->
                                 <a href="{{ route('edit.profile') }}" class="dropdown-item notify-item">
                                     <i class="fe-user"></i>
-                                    <span>Profile</span>
+                                    <span>Profile Edit</span>
                                 </a>
 
                                 <div class="dropdown-divider"></div>

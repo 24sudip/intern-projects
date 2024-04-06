@@ -11,6 +11,10 @@ use Intervention\Image\Drivers\Gd\Driver;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -39,7 +43,7 @@ class BlogController extends Controller
         // print_r($request->all());
         $request->validate([
             'category_id'=>'required',
-            'blog_title'=>'required',
+            'blog_title'=>'required|unique:blogs',
             'blog_intro'=>'required',
             'blog_photo'=>'required',
         ]);
@@ -131,6 +135,17 @@ class BlogController extends Controller
     {
         Blog::find($blog_id)->update([
             'banner_theme'=>$request->banner_theme,
+        ]);
+        return back();
+    }
+
+    function blogFeature(Request $request, $blog_id)
+    {
+        Blog::where('feature_status',1)->update([
+            'feature_status'=>0,
+        ]);
+        Blog::find($blog_id)->update([
+            'feature_status'=>$request->feature_status,
         ]);
         return back();
     }

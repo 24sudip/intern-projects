@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\{HomeController, UserController, FrontendController, CategoryController, BlogController, TagController};
-use App\Http\Controllers\{TagInventoryController};
+use App\Http\Controllers\{TagInventoryController, GroupInventoryController};
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -15,6 +15,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [FrontendController::class, 'Index'])->name('blogger.home');
 Route::get('/contact', [FrontendController::class, 'Contact'])->name('contact');
 Route::get('/about', [FrontendController::class, 'About'])->name('about');
+Route::get('/category/page/{id}', [FrontendController::class, 'CategoryPage'])->name('category.page');
+Route::get('/blog/details/{id}', [FrontendController::class, 'BlogDetails'])->name('blog.details');
 // Frontend
 
 // Category part
@@ -28,14 +30,26 @@ Route::resource('tag', TagController::class);
 // Blog part
 Route::resource('blog', BlogController::class);
 Route::post('/blog/banner/{blog_id}', [BlogController::class, 'blogBanner'])->name('blog.banner');
-Route::get('/blog/tag/{id}', [TagInventoryController::class, 'tag'])->name('blog.tag');
-Route::post('/tag/inventory/store/{id}', [TagInventoryController::class, 'TagInventoryStore'])->name('tag.inventory.store');
+Route::post('/blog/feature/{blog_id}', [BlogController::class, 'blogFeature'])->name('blog.feature');
 // Blog part
+
+// Tag Inventory
+Route::get('/blog/tag/{id}', [TagInventoryController::class, 'TagInventory'])->name('blog.tag');
+Route::post('/tag/inventory/store/{id}', [TagInventoryController::class, 'TagInventoryStore'])->name('tag.inventory.store');
+Route::get('/tag/inventory/delete/{id}', [TagInventoryController::class, 'TagInventoryDelete'])->name('tag.inventory.delete');
+// Tag Inventory
+
+// Group Inventory
+Route::get('/blog/group/show', [GroupInventoryController::class, 'GroupShow'])->name('group.show');
+Route::get('/blog/group/{id}', [GroupInventoryController::class, 'GroupInventory'])->name('blog.group');
+Route::post('/group/inventory/store/{id}', [GroupInventoryController::class, 'GroupInventoryStore'])->name('group.inventory.store');
+Route::get('/group/inventory/delete/{id}', [GroupInventoryController::class, 'GroupInventoryDelete'])->name('group.inventory.delete');
+// Group Inventory
 
 // User
 Route::get('/users', [UserController::class, 'users'])->name('users');
 Route::get('/user/delete/{user_id}', [UserController::class, 'UserDelete'])->name('user.delete');
-
+//
 Route::get('/edit/profile', [UserController::class, 'EditProfile'])->name('edit.profile');
 Route::post('/update/profile', [UserController::class, 'UpdateProfile'])->name('update.profile');
 Route::post('/update/profile/photo', [UserController::class, 'UpdateProfilePhoto'])->name('update.profile.photo');
