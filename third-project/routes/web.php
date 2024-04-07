@@ -17,6 +17,12 @@ Route::get('/contact', [FrontendController::class, 'Contact'])->name('contact');
 Route::get('/about', [FrontendController::class, 'About'])->name('about');
 Route::get('/category/page/{id}', [FrontendController::class, 'CategoryPage'])->name('category.page');
 Route::get('/blog/details/{id}', [FrontendController::class, 'BlogDetails'])->name('blog.details');
+Route::get('/personal/page/{id}', [FrontendController::class, 'PersonalPage'])->name('personal.page');
+//
+Route::post('/comment/store/{id}', [FrontendController::class, 'CommentStore'])->name('comment.store');
+//
+Route::get('/reply/add/{id}', [FrontendController::class, 'ReplyAdd'])->name('reply.add');
+Route::post('/reply/store/{id}', [FrontendController::class, 'ReplyStore'])->name('reply.store');
 // Frontend
 
 // Category part

@@ -25,7 +25,7 @@
 							<h1 class="title mt-0 mb-3">{{ $blog->blog_title }}</h1>
 							<ul class="meta list-inline mb-0">
 								<li class="list-inline-item">
-                                    <a href="#">
+                                    <a href="{{ route('personal.page', $blog->relation_to_user->id) }}">
                                         @if ($blog->relation_to_user->profile_photo)
                                         <img width="40" src="{{ asset('upload/profile_photos') }}/{{ $blog->relation_to_user->profile_photo }}" class="author" alt="author"/>
                                         @else
@@ -44,6 +44,9 @@
 							<img src="{{ asset('upload/blog_photos') }}/{{ $blog->blog_photo }}" alt="post-title" />
 						</div>
 						<!-- post content -->
+                        <div class="post-conteynt pb-3">
+                            {{ $blog->blog_intro }}
+                        </div>
                         <style>
                             .ql-clipboard {
                                 display: none;
@@ -58,9 +61,6 @@
 						<!-- post bottom section -->
 						<div class="post-bottom">
 							<div class="row d-flex align-items-center">
-                                @php
-                                    $tag_invents = App\Models\TagInventory::where('blog_id',$blog->id);
-                                @endphp
 								<div class="col-md-6 col-12 text-center text-md-start">
 									<!-- tags -->
                                     @foreach ($tag_invents as $tag_invent)
@@ -94,7 +94,8 @@
                             @endif
 						</div>
 						<div class="details">
-							<h4 class="name"><a href="#">{{ $blog->relation_to_user->name }}</a></h4>
+							<h4 class="name"><a href="{{ route('personal.page', $blog->relation_to_user->id) }}">
+                                {{ $blog->relation_to_user->name }}</a></h4>
 							<p>Hello, I’m a content writer who is fascinated by content fashion, celebrity and lifestyle. She helps clients bring the right content to the right people.</p>
 							<!-- social icons -->
 							<ul class="social-icons list-unstyled list-inline mb-0">
@@ -112,7 +113,7 @@
 
 					<!-- section header -->
 					<div class="section-header">
-						<h3 class="section-title">Comments (3)</h3>
+						<h3 class="section-title">Comments ({{ $comments->count() }})</h3>
 						<img src="{{ asset('frontend_assets') }}/images/wave.svg" class="wave" alt="wave" />
 					</div>
 					<!-- post comments -->
@@ -120,28 +121,47 @@
 
 						<ul class="comments">
 							<!-- comment item -->
+                            @foreach ($comments as $comment)
 							<li class="comment rounded">
 								<div class="thumb">
-									<img src="{{ asset('frontend_assets') }}/images/other/comment-1.png" alt="John Doe" />
+									@if ($comment->relation_to_user->profile_photo)
+                                    <img width="40" src="{{ asset('upload/profile_photos') }}/{{ $comment->relation_to_user->profile_photo }}" class="author" alt="author"/>
+                                    @else
+                                    <img width="40" src="{{ asset('upload/profile_photos/default_profile_photo.jpg') }}">
+                                    @endif
 								</div>
 								<div class="details">
-									<h4 class="name"><a href="#">John Doe</a></h4>
-									<span class="date">Jan 08, 2021 14:41 pm</span>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae odio ut tortor fringilla cursus sed quis odio.</p>
-									<a href="#" class="btn btn-default btn-sm">Reply</a>
+									<h4 class="name"><a href="{{ route('personal.page', $comment->relation_to_user->id) }}">
+                                        {{ $comment->relation_to_user->name }}</a></h4>
+									<span class="date">{{ $comment->created_at }}</span>
+									<p>{{ $comment->comment_text }}</p>
+                                    @auth
+                                    <a href="{{ route('reply.add', $comment->id) }}" class="btn btn-default btn-sm">Reply</a>
+                                    @endauth
 								</div>
 							</li>
-							<!-- comment item -->
-							<li class="comment child rounded">
-								<div class="thumb">
-									<img src="{{ asset('frontend_assets') }}/images/other/comment-2.png" alt="John Doe" />
-								</div>
-								<div class="details">
-									<h4 class="name"><a href="#">Helen Doe</a></h4>
-									<span class="date">Jan 08, 2021 14:41 pm</span>
-									<p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
-								</div>
-							</li>
+                                @php
+                                    $replies = App\Models\Reply::where('comment_id', $comment->id)->get();
+                                @endphp
+                                @foreach ($replies as $reply)
+                                <!-- reply item -->
+                                <li class="comment child rounded">
+                                    <div class="thumb">
+                                        @if ($reply->relation_to_user->profile_photo)
+                                        <img width="40" src="{{ asset('upload/profile_photos') }}/{{ $reply->relation_to_user->profile_photo }}" class="author" alt="author"/>
+                                        @else
+                                        <img width="40" src="{{ asset('upload/profile_photos/default_profile_photo.jpg') }}">
+                                        @endif
+                                    </div>
+                                    <div class="details">
+                                        <h4 class="name"><a href="{{ route('personal.page', $reply->relation_to_user->id) }}">
+                                            {{ $reply->relation_to_user->name }}</a></h4>
+                                        <span class="date">{{ $reply->created_at }}</span>
+                                        <p>{{ $reply->reply_text }}</p>
+                                    </div>
+                                </li>
+                                @endforeach
+                            @endforeach
 						</ul>
 					</div>
 					<div class="spacer" data-height="50"></div>
@@ -153,13 +173,19 @@
 					</div>
 					<!-- comment form -->
 					<div class="comment-form rounded bordered padding-30">
-						<form id="comment-form" class="comment-form" method="post">
+                        @if (session('Msg'))
+                        <div class="alert alert-success">{{ session('Msg') }}</div>
+                        @endif
+						<form id="comment-form" class="comment-form" method="post"
+                        action="{{ route('comment.store', $blog->id) }}">
+                            @csrf
 							<div class="messages"></div>
 							<div class="row">
 								<div class="column col-md-12">
 									<!-- Comment textarea -->
 									<div class="form-group">
-										<textarea name="InputComment" id="InputComment" class="form-control" rows="4" placeholder="Your comment here..." required="required"></textarea>
+                                        <input type="hidden" name="commentor_id" value="{{ Auth::id() }}">
+										<textarea name="comment_text" id="InputComment" class="form-control" rows="4" placeholder="Your comment here..." required="required"></textarea>
 									</div>
 								</div>
 							</div>

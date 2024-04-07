@@ -17,6 +17,10 @@
                 <table class="table mb-0">
                     <tbody>
                         <tr>
+                            <td>Blogger Name</td>
+                            <td>{{ $blog->relation_to_user->name }}</td>
+                        </tr>
+                        <tr>
                             <td>Category</td>
                             <td>{{ $blog->relation_to_category->category_name }}</td>
                         </tr>
@@ -35,7 +39,15 @@
                         <tr>
                             <td>Blog Detail</td>
                             <td>
-                                <div id="snow-editor">
+                                <style>
+                                    .ql-clipboard {
+                                        display: none;
+                                    }
+                                    .ql-tooltip {
+                                        display: none;
+                                    }
+                                </style>
+                                <div>
                                     {!! $blog->blog_detail !!}
                                 </div>
                             </td>
@@ -46,8 +58,4 @@
         </div>
     </div>
 </div>
-<script>
-    let myInput = document.querySelector("input");
-    myInput.style.visibility = "none";
-</script>
 @endsection
