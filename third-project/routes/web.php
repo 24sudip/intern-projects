@@ -18,6 +18,8 @@ Route::get('/about', [FrontendController::class, 'About'])->name('about');
 Route::get('/category/page/{id}', [FrontendController::class, 'CategoryPage'])->name('category.page');
 Route::get('/blog/details/{id}', [FrontendController::class, 'BlogDetails'])->name('blog.details');
 Route::get('/personal/page/{id}', [FrontendController::class, 'PersonalPage'])->name('personal.page');
+Route::get('/admin/page', [FrontendController::class, 'AdminPage'])->name('admin.page');
+Route::get('/minimal/page', [FrontendController::class, 'MinimalPage'])->name('minimal.page');
 //
 Route::post('/comment/store/{id}', [FrontendController::class, 'CommentStore'])->name('comment.store');
 //

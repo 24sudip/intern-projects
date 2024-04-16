@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Blog, Category, TagInventory, Comment, Reply};
+use App\Models\{Blog, Category, TagInventory, Comment, Reply, User, GroupInventory};
 use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
@@ -68,6 +68,22 @@ class FrontendController extends Controller
     }
 
     function PersonalPage($id){
-        return view();
+        return view('frontend.PersonalPage',[
+            'user'=> User::find($id),
+            'blogs'=>Blog::where('blogger_id',$id)->latest()->get(),
+        ]);
+    }
+
+    function AdminPage(){
+        $user= User::where('role','admin')->first();
+        return view('frontend.AdminPage',[
+            'user'=> $user,
+            'blogs'=>Blog::where('blogger_id',$user->id)->latest()->get(),
+            'group_blogs'=>GroupInventory::where('group_name','Personal-Slider')->limit(6)->get(),
+        ]);
+    }
+
+    function MinimalPage(){
+        return view('frontend.MinimalPage');
     }
 }

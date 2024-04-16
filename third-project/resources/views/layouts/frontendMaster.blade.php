@@ -67,7 +67,7 @@
 		<nav class="navbar navbar-expand-lg">
 			<div class="container-xl">
 				<!-- site logo -->
-				<a class="navbar-brand" href="index.html"><img src="{{ asset('frontend_assets') }}/images/logo.svg" alt="logo" /></a>
+				<a class="navbar-brand" href="{{ route('admin.page') }}"><img src="{{ asset('frontend_assets') }}/images/logo.svg" alt="logo" /></a>
 
 				<div class="collapse navbar-collapse">
 					<!-- menus -->

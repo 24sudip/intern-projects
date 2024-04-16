@@ -34,9 +34,7 @@
 <li class="nav-item dropdown active">
     <a class="nav-link dropdown-toggle" href="index.html">Pages</a>
     <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="personal.html">Personal</a></li>
-        <li><a class="dropdown-item" href="personal-alt.html">Personal Alt</a></li>
-        <li><a class="dropdown-item" href="minimal.html">Minimal</a></li>
+        <li><a class="dropdown-item" href="{{ route('minimal.page') }}">Minimal</a></li>
         <li><a class="dropdown-item" href="classic.html">Classic</a></li>
     </ul>
 </li>
