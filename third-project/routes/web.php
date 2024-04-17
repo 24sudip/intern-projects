@@ -20,6 +20,8 @@ Route::get('/blog/details/{id}', [FrontendController::class, 'BlogDetails'])->na
 Route::get('/personal/page/{id}', [FrontendController::class, 'PersonalPage'])->name('personal.page');
 Route::get('/admin/page', [FrontendController::class, 'AdminPage'])->name('admin.page');
 Route::get('/minimal/page', [FrontendController::class, 'MinimalPage'])->name('minimal.page');
+Route::get('/classic/page', [FrontendController::class, 'ClassicPage'])->name('classic.page');
+Route::get('/all/blog', [FrontendController::class, 'AllBlog'])->name('all.blog');
 //
 Route::post('/comment/store/{id}', [FrontendController::class, 'CommentStore'])->name('comment.store');
 //

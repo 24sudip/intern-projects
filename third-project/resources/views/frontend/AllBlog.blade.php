@@ -1,26 +1,23 @@
-{{--  --}}
+<!-- Knowing is not enough; we must apply. Being willing is not enough; we must do. - Leonardo da Vinci -->
 <!DOCTYPE html>
 <html lang="en-US">
-<!-- Mirrored from themeger.shop/html/katen/html/personal-alt.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Nov 2023 05:32:12 GMT -->
+<!-- Mirrored from themeger.shop/html/katen/html/category.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Nov 2023 05:32:51 GMT -->
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Katen</title>
 	<meta name="description" content="Katen - Minimal Blog & Magazine HTML Theme">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend_assets') }}/images/favicon.png">
-
 	<!-- STYLES -->
 	<link rel="stylesheet" href="{{ asset('frontend_assets') }}/css/bootstrap.min.css" type="text/css" media="all">
 	<link rel="stylesheet" href="{{ asset('frontend_assets') }}/css/all.min.css" type="text/css" media="all">
 	<link rel="stylesheet" href="{{ asset('frontend_assets') }}/css/slick.css" type="text/css" media="all">
 	<link rel="stylesheet" href="{{ asset('frontend_assets') }}/css/simple-line-icons.css" type="text/css" media="all">
 	<link rel="stylesheet" href="{{ asset('frontend_assets') }}/css/style.css" type="text/css" media="all">
-
 	<!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body>
@@ -62,7 +59,7 @@
 	<div class="main-overlay"></div>
 
 	<!-- header -->
-	<header class="header-personal light">
+	<header class="header-personal">
         <div class="container-xl header-top">
 			<div class="row align-items-center">
 
@@ -80,14 +77,8 @@
 
 				<div class="col-md-4 col-sm-12 col-xs-12 text-center">
 				<!-- site logo -->
-					<a class="navbar-brand" href="#">
-                        @if ($user->profile_photo)
-                        <img src="{{ asset('upload/profile_photos') }}/{{ $user->profile_photo }}" alt="logo" width="70"/>
-                        @else
-                        <img width="70" src="{{ asset('upload/profile_photos/default_profile_photo.jpg') }}">
-                        @endif
-                    </a>
-					<a href="#" class="d-block text-logo">{{ $user->name }}<span class="dot">.</span></a>
+					<a class="navbar-brand" href="{{ route('admin.page') }}"><img src="{{ asset('frontend_assets') }}/images/other/avatar-lg.png" alt="logo" /></a>
+					<a href="{{ route('admin.page') }}" class="d-block text-logo">Katen<span class="dot">.</span></a>
 					<span class="slogan d-block">Professional Writer & Personal Blogger</span>
 				</div>
 
@@ -120,36 +111,37 @@
 		</nav>
 	</header>
 
-    <!-- section hero -->
-    <section class="hero data-bg-image d-flex align-items-center" data-bg-image="{{ asset('frontend_assets') }}/images/other/hero.jpg">
+    <section class="page-header">
         <div class="container-xl">
-            <!-- call to action -->
-            <div class="cta text-center">
-                <h2 class="mt-0 mb-4">I'm {{ $user->name }}.</h2>
-                <p class="mt-0 mb-4">Hello, I’m a content writer who is fascinated by content fashion, celebrity and lifestyle. She helps clients bring the right content to the right people.</p>
-                <a href="#" class="btn btn-light mt-2">About Me</a>
+            <div class="text-center">
+                <h1 class="mt-0 mb-2">All Blogs</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center mb-0">
+                        <li class="breadcrumb-item"><a href="{{ route('blogger.home') }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">All Blogs</li>
+                    </ol>
+                </nav>
             </div>
         </div>
-        <!-- animated mouse wheel -->
-        <span class="mouse">
-            <span class="wheel"></span>
-        </span>
-        <!-- wave svg -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 260"><path fill="#FFF" fill-opacity="1" d="M0,256L60,245.3C120,235,240,213,360,218.7C480,224,600,256,720,245.3C840,235,960,181,1080,176C1200,171,1320,213,1380,234.7L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
     </section>
 
 	<!-- section main content -->
-	<section class="main-content mt-5">
+	<section class="main-content">
 		<div class="container-xl">
+
 			<div class="row gy-4">
-				<div class="col-lg-8">
+
+				<div class="col-lg-12">
+
                     <div class="row gy-4">
-                        @foreach($blogs as $blog)
-                        <div class="col-sm-6">
+                        @foreach ($blogs as $blog)
+                        <div class="col-sm-4">
                             <!-- post -->
                             <div class="post post-grid rounded bordered">
                                 <div class="thumb top-rounded">
-                                    <a href="{{ route('category.page', $blog->category_id) }}" class="category-badge position-absolute">{{ $blog->relation_to_category->category_name }}</a>
+                                    <a href="{{ route('category.page',$blog->category_id) }}" class="category-badge position-absolute">
+                                        {{ $blog->relation_to_category->category_name }}
+                                    </a>
                                     @if ($blog->blog_icon)
                                     <span class="post-format">
                                         <i class="{{ $blog->blog_icon }}"></i>
@@ -168,12 +160,13 @@
                                 <div class="details">
                                     <ul class="meta list-inline mb-0">
                                         <li class="list-inline-item">
-                                            <a href="#">
-                                                @if ($user->profile_photo)
-                                                <img src="{{ asset('upload/profile_photos') }}/{{ $user->profile_photo }}" class="author" alt="author" width="40"/>{{ $user->name }}
+                                            <a href="{{ route('personal.page', $blog->blogger_id) }}">
+                                                @if ($blog->relation_to_user->profile_photo)
+                                                <img width="40" src="{{ asset('upload/profile_photos') }}/{{ $blog->relation_to_user->profile_photo }}" class="author" alt="author"/>
                                                 @else
                                                 <img width="40" src="{{ asset('upload/profile_photos/default_profile_photo.jpg') }}">
                                                 @endif
+                                                {{ $blog->relation_to_user->name }}
                                             </a>
                                         </li>
                                         <li class="list-inline-item">{{ $blog->created_at->format('d M Y') }}</li>
@@ -201,6 +194,7 @@
                         </div>
                         @endforeach
                     </div>
+                    {{ $blogs->onEachSide(2)->links() }}
 					<nav>
 						<ul class="pagination justify-content-center">
 							<li class="page-item active" aria-current="page">
@@ -211,11 +205,7 @@
 						</ul>
 					</nav>
 				</div>
-				<div class="col-lg-4">
-					@include('frontend.Sidebar')
-				</div>
 			</div>
 		</div>
 	</section>
-
 @include('frontend.Footer')

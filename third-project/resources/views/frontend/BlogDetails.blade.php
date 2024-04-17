@@ -25,7 +25,7 @@
 							<h1 class="title mt-0 mb-3">{{ $blog->blog_title }}</h1>
 							<ul class="meta list-inline mb-0">
 								<li class="list-inline-item">
-                                    <a href="{{ route('personal.page', $blog->relation_to_user->id) }}">
+                                    <a href="{{ route('personal.page', $blog->blogger_id) }}">
                                         @if ($blog->relation_to_user->profile_photo)
                                         <img width="40" src="{{ asset('upload/profile_photos') }}/{{ $blog->relation_to_user->profile_photo }}" class="author" alt="author"/>
                                         @else
@@ -94,7 +94,7 @@
                             @endif
 						</div>
 						<div class="details">
-							<h4 class="name"><a href="{{ route('personal.page', $blog->relation_to_user->id) }}">
+							<h4 class="name"><a href="{{ route('personal.page', $blog->blogger_id) }}">
                                 {{ $blog->relation_to_user->name }}</a></h4>
 							<p>Hello, I’m a content writer who is fascinated by content fashion, celebrity and lifestyle. She helps clients bring the right content to the right people.</p>
 							<!-- social icons -->
@@ -191,6 +191,11 @@
 							</div>
 							<button type="submit" name="submit" id="submit" value="Submit" class="btn btn-default">Submit</button><!-- Submit Button -->
 						</form>
+					</div>
+                    @else
+                    <div class="section-header">
+						<h3 class="section-title">Login To Comment</h3>
+						<img src="{{ asset('frontend_assets') }}/images/wave.svg" class="wave" alt="wave" />
 					</div>
                     @endauth
                 </div>

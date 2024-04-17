@@ -1,7 +1,7 @@
 <li class="nav-item dropdown active">
     <a class="nav-link dropdown-toggle" href="{{ route('blogger.home') }}">Home</a>
     <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="personal.html">All Blogs</a></li>
+        <li><a class="dropdown-item" href="{{ route('all.blog') }}">All Blogs</a></li>
     </ul>
 </li>
 @auth()
@@ -35,7 +35,7 @@
     <a class="nav-link dropdown-toggle" href="index.html">Pages</a>
     <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="{{ route('minimal.page') }}">Minimal</a></li>
-        <li><a class="dropdown-item" href="classic.html">Classic</a></li>
+        <li><a class="dropdown-item" href="{{ route('classic.page') }}">Classic</a></li>
     </ul>
 </li>
 <li class="nav-item">

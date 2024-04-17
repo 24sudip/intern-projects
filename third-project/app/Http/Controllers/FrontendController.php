@@ -22,7 +22,7 @@ class FrontendController extends Controller
 
     function CategoryPage($id){
         return view('frontend.CategoryPage',[
-            'blogs'=>Blog::where('category_id',$id)->get(),
+            'blogs'=>Blog::where('category_id',$id)->latest()->get(),
             'category'=>Category::where('id',$id)->first(),
         ]);
     }
@@ -79,11 +79,26 @@ class FrontendController extends Controller
         return view('frontend.AdminPage',[
             'user'=> $user,
             'blogs'=>Blog::where('blogger_id',$user->id)->latest()->get(),
-            'group_blogs'=>GroupInventory::where('group_name','Personal-Slider')->limit(6)->get(),
+            'group_blogs'=>GroupInventory::where('group_name','Personal-Slider')->latest()->limit(6)->get(),
         ]);
     }
 
     function MinimalPage(){
-        return view('frontend.MinimalPage');
+        return view('frontend.MinimalPage',[
+            'minimal_blogs'=>GroupInventory::where('group_name','Minimal')->latest()->get(),
+        ]);
+    }
+
+    function ClassicPage(){
+        return view('frontend.ClassicPage',[
+            'classic_blogs'=>GroupInventory::where('group_name','Classic')->latest()->get(),
+            'classic_sliders'=>GroupInventory::where('group_name','Classic-Slider')->limit(2)->get(),
+        ]);
+    }
+
+    function AllBlog(){
+        return view('frontend.AllBlog',[
+            'blogs'=>Blog::latest()->paginate(6),
+        ]);
     }
 }

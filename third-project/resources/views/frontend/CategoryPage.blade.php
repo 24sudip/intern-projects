@@ -1,7 +1,6 @@
 {{--  --}}
 <!DOCTYPE html>
 <html lang="en-US">
-
 <!-- Mirrored from themeger.shop/html/katen/html/category.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 13 Nov 2023 05:32:51 GMT -->
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -164,7 +163,7 @@
                                 <div class="details">
                                     <ul class="meta list-inline mb-0">
                                         <li class="list-inline-item">
-                                            <a href="{{ route('personal.page', $blog->relation_to_user->id) }}">
+                                            <a href="{{ route('personal.page', $blog->blogger_id) }}">
                                                 @if ($blog->relation_to_user->profile_photo)
                                                 <img width="40" src="{{ asset('upload/profile_photos') }}/{{ $blog->relation_to_user->profile_photo }}" class="author" alt="author"/>
                                                 @else
@@ -173,7 +172,7 @@
                                                 {{ $blog->relation_to_user->name }}
                                             </a>
                                         </li>
-                                        <li class="list-inline-item">{{ $blog->created_at->format('d/m/Y') }}</li>
+                                        <li class="list-inline-item">{{ $blog->created_at->format('d M Y') }}</li>
                                     </ul>
                                     <h5 class="post-title mb-3 mt-3"><a href="{{ route('blog.details', $blog->id) }}">{{ $blog->blog_title }}</a></h5>
                                     <p class="excerpt mb-0">{{ $blog->blog_intro }}</p>
