@@ -697,6 +697,8 @@
     <!-- Datatables js -->
     <script src="{{ asset('dashboard_assets') }}/js/pages/datatables.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @yield('footer_script')
 </body>
 <!-- Mirrored from myrathemes.com/dashtrap/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Mar 2024 03:40:30 GMT -->
 </html>

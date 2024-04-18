@@ -13,4 +13,9 @@ class TagInventory extends Model
     {
         return $this->belongsTo(Tag::class, 'tag_id');
     }
+
+    public function relation_to_blog()
+    {
+        return $this->belongsTo(Blog::class, 'blog_id');
+    }
 }

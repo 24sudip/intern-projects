@@ -61,12 +61,16 @@
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label class="mb-2">Blog Thumbnail Upload</label>
+                        <label class="mb-2">Old Thumbnail</label>
                         <div class="input-group col-xs-12">
-                            <img style="width:100px;" src="{{ asset('upload/blog_photos') }}/{{ $blog->blog_photo }}" alt="thumbnail">
+                            <img style="width:120px;" src="{{ asset('upload/blog_photos') }}/{{ $blog->blog_photo }}" alt="old_thumbnail">
+                        </div>
+                        <label class="mb-2">New Thumbnail Upload</label>
+                        <div class="input-group col-xs-12">
+                            <input type="file" name="blog_photo" class="form-control file-upload-info" placeholder="Upload Blog Thumbnail" onchange="document.getElementById('web').src = window.URL.createObjectURL(this.files[0])">
                         </div>
                         <div class="input-group col-xs-12">
-                            <input type="file" name="blog_photo" class="form-control file-upload-info" placeholder="Upload Blog Thumbnail">
+                            <img style="width:120px;" src="" id="web" alt="thumbnail">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>

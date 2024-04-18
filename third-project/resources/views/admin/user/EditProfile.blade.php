@@ -58,9 +58,12 @@
                 <form class="forms-sample" action="{{ route('update.profile.photo') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group mb-2">
-                        <label>File upload</label>
+                        <label>Photo upload</label>
                         <div class="input-group col-xs-12">
-                            <input type="file" name="profile_photo" class="form-control file-upload-info" placeholder="Upload Image">
+                            <input type="file" name="profile_photo" class="form-control file-upload-info" placeholder="Upload Image" onchange="document.getElementById('web').src = window.URL.createObjectURL(this.files[0])">
+                        </div>
+                        <div class="input-group col-xs-12">
+                            <img style="width:120px;" src="" id="web" alt="profile_photo">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>

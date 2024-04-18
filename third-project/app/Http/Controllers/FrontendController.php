@@ -3,13 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Blog, Category, TagInventory, Comment, Reply, User, GroupInventory};
+use App\Models\{Blog, Category, TagInventory, Comment, Reply, User, GroupInventory, Tag};
 use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
 {
     function Index(){
-        return view('frontend.BloggerHome');
+        $tag = Tag::where('tag_name','#Trending')->first();
+        return view('frontend.BloggerHome',[
+            'featured_blog'=>Blog::where('feature_status','1')->first(),
+            'popular_blogs'=>Blog::orderBy('page_view','DESC')->limit(4)->get(),
+            'recent_blogs'=>Blog::latest()->limit(4)->get(),
+            'first_editor'=>GroupInventory::where('group_name','Editors-Pick')->latest()->first(),
+            'all_editors'=>GroupInventory::where('group_name','Editors-Pick')->latest()->limit(5)->get(),
+            'trending_tags'=>TagInventory::where('tag_id', $tag->id)->latest()->limit(6)->get(),
+        ]);
     }
 
     function Contact(){

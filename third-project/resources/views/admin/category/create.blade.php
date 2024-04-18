@@ -63,7 +63,11 @@
                                 </td>
                             </tr>
                             @empty
-                            No Category Found
+                            <tr>
+                                <td>
+                                    No Category Found
+                                </td>
+                            </tr>
                             @endforelse
                         </tbody>
                     </table>
@@ -75,3 +79,27 @@
     <h1>Only Admin Is Allowed To See This Page</h1>
     @endif
 @endsection
+
+{{-- @section('footer_script')
+<script>
+    $('.del_btn').click(function () {
+        Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+            });
+        }
+        });
+    });
+</script>
+@endsection --}}
