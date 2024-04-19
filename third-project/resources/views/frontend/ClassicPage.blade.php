@@ -165,7 +165,7 @@
 					<!-- post -->
 					<div class="post post-classic rounded bordered">
                         @php
-                            $comments = App\Models\Comment::where('blog_id',$classic_blog->relation_to_blog->id)->get();
+                            $comments = App\Models\Comment::where('blog_id',$classic_blog->relation_to_blog->id)->count();
                         @endphp
 						<div class="thumb top-rounded">
 							<a href="{{ route('category.page',$classic_blog->relation_to_blog->category_id) }}" class="category-badge lg position-absolute">
@@ -201,7 +201,7 @@
                                 </li>
 								<li class="list-inline-item">{{ $classic_blog->relation_to_blog->created_at->format('d M Y') }}
                                 </li>
-								<li class="list-inline-item"><i class="icon-bubble"></i> ({{ $comments->count() }})</li>
+								<li class="list-inline-item"><i class="icon-bubble"></i> ({{ $comments }})</li>
 							</ul>
 							<h5 class="post-title mb-3 mt-3">
                                 <a href="{{ route('blog.details',$classic_blog->relation_to_blog->id) }}">

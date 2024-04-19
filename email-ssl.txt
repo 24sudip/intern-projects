@@ -1,4 +1,9 @@
 ====
+BookingDates::where('email',$request->email)
+    ->orWhere('name','like',"%{$request->name}%")->get();
+dd(DB::getQueryLog())
+preg_replace("/[^A-Za-z0-9 ]/", '', $search);
+====
 category: category_name,page_status;
 blog: blog_title,blogger_id,category_id,blog_photo,blog_intro,blog_detail,page_view(0),
 	feature_status(Not-Featured),

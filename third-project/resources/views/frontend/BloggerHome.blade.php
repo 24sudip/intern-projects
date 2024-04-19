@@ -313,60 +313,31 @@
 					</div>
 
 					<div class="row post-carousel-twoCol post-carousel">
+                        @foreach ($inspi_blogs as $inspi_blog)
 						<!-- post -->
 						<div class="post post-over-content col-md-6">
 							<div class="details clearfix">
-								<a href="category.html" class="category-badge">Inspiration</a>
-								<h4 class="post-title"><a href="blog-single.html">Want To Have A More Appealing Tattoo?</a></h4>
+								<a href="{{ route('category.page', $inspi_blog->category_id) }}" class="category-badge">
+                                    {{ $inspi_blog->relation_to_category->category_name }}
+                                </a>
+								<h4 class="post-title">
+                                    <a href="{{ route('blog.details', $inspi_blog->id) }}">{{ $inspi_blog->blog_title }}</a>
+                                </h4>
 								<ul class="meta list-inline mb-0">
-									<li class="list-inline-item"><a href="#">Katen Doe</a></li>
-									<li class="list-inline-item">29 March 2021</li>
+									<li class="list-inline-item"><a href="{{ route('personal.page',$inspi_blog->blogger_id) }}">
+                                        {{ $inspi_blog->relation_to_user->name }}</a></li>
+									<li class="list-inline-item">{{ $inspi_blog->created_at->format('d M Y') }}</li>
 								</ul>
 							</div>
-							<a href="blog-single.html">
+							<a href="{{ route('blog.details', $inspi_blog->id) }}">
 								<div class="thumb rounded">
 									<div class="inner">
-										<img src="{{ asset('frontend_assets') }}/images/posts/inspiration-1.jpg" alt="thumb" />
+										<img src="{{ asset('upload/blog_photos') }}/{{ $inspi_blog->blog_photo }}" alt="thumb" />
 									</div>
 								</div>
 							</a>
 						</div>
-						<!-- post -->
-						<div class="post post-over-content col-md-6">
-							<div class="details clearfix">
-								<a href="category.html" class="category-badge">Inspiration</a>
-								<h4 class="post-title"><a href="blog-single.html">Feel Like A Pro With The Help Of These 7 Tips</a></h4>
-								<ul class="meta list-inline mb-0">
-									<li class="list-inline-item"><a href="#">Katen Doe</a></li>
-									<li class="list-inline-item">29 March 2021</li>
-								</ul>
-							</div>
-							<a href="blog-single.html">
-								<div class="thumb rounded">
-									<div class="inner">
-										<img src="{{ asset('frontend_assets') }}/images/posts/inspiration-2.jpg" alt="thumb" />
-									</div>
-								</div>
-							</a>
-						</div>
-						<!-- post -->
-						<div class="post post-over-content col-md-6">
-							<div class="details clearfix">
-								<a href="category.html" class="category-badge">Inspiration</a>
-								<h4 class="post-title"><a href="blog-single.html">Your Light Is About To Stop Being Relevant</a></h4>
-								<ul class="meta list-inline mb-0">
-									<li class="list-inline-item"><a href="#">Katen Doe</a></li>
-									<li class="list-inline-item">29 March 2021</li>
-								</ul>
-							</div>
-							<a href="blog-single.html">
-								<div class="thumb rounded">
-									<div class="inner">
-										<img src="{{ asset('frontend_assets') }}/images/posts/inspiration-3.jpg" alt="thumb" />
-									</div>
-								</div>
-							</a>
-						</div>
+                        @endforeach
 					</div>
 
 					<div class="spacer" data-height="50"></div>
@@ -380,28 +351,49 @@
 					<div class="padding-30 rounded bordered">
 
 						<div class="row">
-
+                            @foreach ($recent_blogs as $recent_blog)
 							<div class="col-md-12 col-sm-6">
 								<!-- post -->
 								<div class="post post-list clearfix">
 									<div class="thumb rounded">
-										<span class="post-format-sm">
-											<i class="icon-picture"></i>
-										</span>
-										<a href="blog-single.html">
+										@if ($recent_blog->blog_icon)
+                                        <span class="post-format">
+                                            <i class="{{ $recent_blog->blog_icon }}"></i>
+                                        </span>
+                                        @else
+                                        <span class="post-format">
+                                            <i class="icon-user"></i>
+                                        </span>
+                                        @endif
+										<a href="{{ route('blog.details', $recent_blog->id) }}">
 											<div class="inner">
-												<img src="{{ asset('frontend_assets') }}/images/posts/latest-sm-1.jpg" alt="post-title" />
+												<img src="{{ asset('upload/blog_photos') }}/{{ $recent_blog->blog_photo }}" alt="post-title" />
 											</div>
 										</a>
 									</div>
 									<div class="details">
 										<ul class="meta list-inline mb-3">
-											<li class="list-inline-item"><a href="#"><img src="{{ asset('frontend_assets') }}/images/other/author-sm.png" class="author" alt="author"/>Katen Doe</a></li>
-											<li class="list-inline-item"><a href="#">Trending</a></li>
-											<li class="list-inline-item">29 March 2021</li>
+											<li class="list-inline-item">
+                                                <a href="{{ route('personal.page', $recent_blog->blogger_id) }}">
+                                                    @if ($recent_blog->relation_to_user->profile_photo)
+                                                    <img width="40" src="{{ asset('upload/profile_photos') }}/{{ $recent_blog->relation_to_user->profile_photo }}" class="author" alt="author"/>
+                                                    @else
+                                                    <img width="40" src="{{ asset('upload/profile_photos/default_profile_photo.jpg') }}">
+                                                    @endif
+                                                    {{ $recent_blog->relation_to_user->name }}
+                                                </a>
+                                            </li>
+											<li class="list-inline-item">
+                                                <a href="{{ route('category.page',$recent_blog->category_id) }}">
+                                                    {{ $recent_blog->relation_to_category->category_name }}
+                                                </a>
+                                            </li>
+											<li class="list-inline-item">{{ $recent_blog->created_at->format('d M Y') }}</li>
 										</ul>
-										<h5 class="post-title"><a href="blog-single.html">The Next 60 Things To Immediately Do About Building</a></h5>
-										<p class="excerpt mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings</p>
+										<h5 class="post-title">
+                                            <a href="{{ route('blog.details', $recent_blog->id) }}">
+                                                {{ $recent_blog->blog_title }}</a></h5>
+										<p class="excerpt mb-0">{{ $recent_blog->blog_intro }}</p>
 										<div class="post-bottom clearfix d-flex align-items-center">
 											<div class="social-share me-auto">
 												<button class="toggle-button icon-share"></button>
@@ -415,146 +407,25 @@
 												</ul>
 											</div>
 											<div class="more-button float-end">
-												<a href="blog-single.html"><span class="icon-options"></span></a>
+												<a href="{{ route('blog.details', $recent_blog->id) }}"><span class="icon-options"></span></a>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-
-							<div class="col-md-12 col-sm-6">
-								<!-- post -->
-								<div class="post post-list clearfix">
-									<div class="thumb rounded">
-										<a href="blog-single.html">
-											<div class="inner">
-												<img src="{{ asset('frontend_assets') }}/images/posts/latest-sm-2.jpg" alt="post-title" />
-											</div>
-										</a>
-									</div>
-									<div class="details">
-										<ul class="meta list-inline mb-3">
-											<li class="list-inline-item"><a href="#"><img src="{{ asset('frontend_assets') }}/images/other/author-sm.png" class="author" alt="author"/>Katen Doe</a></li>
-											<li class="list-inline-item"><a href="#">Lifestyle</a></li>
-											<li class="list-inline-item">29 March 2021</li>
-										</ul>
-										<h5 class="post-title"><a href="blog-single.html">Master The Art Of Nature With These 7 Tips</a></h5>
-										<p class="excerpt mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings</p>
-										<div class="post-bottom clearfix d-flex align-items-center">
-											<div class="social-share me-auto">
-												<button class="toggle-button icon-share"></button>
-												<ul class="icons list-unstyled list-inline mb-0">
-													<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="far fa-envelope"></i></a></li>
-												</ul>
-											</div>
-											<div class="more-button float-end">
-												<a href="blog-single.html"><span class="icon-options"></span></a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-md-12 col-sm-6">
-								<!-- post -->
-								<div class="post post-list clearfix">
-									<div class="thumb rounded">
-										<span class="post-format-sm">
-											<i class="icon-camrecorder"></i>
-										</span>
-										<a href="blog-single.html">
-											<div class="inner">
-												<img src="{{ asset('frontend_assets') }}/images/posts/latest-sm-3.jpg" alt="post-title" />
-											</div>
-										</a>
-									</div>
-									<div class="details">
-										<ul class="meta list-inline mb-3">
-											<li class="list-inline-item"><a href="#"><img src="{{ asset('frontend_assets') }}/images/other/author-sm.png" class="author" alt="author"/>Katen Doe</a></li>
-											<li class="list-inline-item"><a href="#">Fashion</a></li>
-											<li class="list-inline-item">29 March 2021</li>
-										</ul>
-										<h5 class="post-title"><a href="blog-single.html">Facts About Business That Will Help You Success</a></h5>
-										<p class="excerpt mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings</p>
-										<div class="post-bottom clearfix d-flex align-items-center">
-											<div class="social-share me-auto">
-												<button class="toggle-button icon-share"></button>
-												<ul class="icons list-unstyled list-inline mb-0">
-													<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="far fa-envelope"></i></a></li>
-												</ul>
-											</div>
-											<div class="more-button float-end">
-												<a href="blog-single.html"><span class="icon-options"></span></a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-md-12 col-sm-6">
-								<!-- post -->
-								<div class="post post-list clearfix">
-									<div class="thumb rounded">
-										<a href="blog-single.html">
-											<div class="inner">
-												<img src="{{ asset('frontend_assets') }}/images/posts/latest-sm-4.jpg" alt="post-title" />
-											</div>
-										</a>
-									</div>
-									<div class="details">
-										<ul class="meta list-inline mb-3">
-											<li class="list-inline-item"><a href="#"><img src="{{ asset('frontend_assets') }}/images/other/author-sm.png" class="author" alt="author"/>Katen Doe</a></li>
-											<li class="list-inline-item"><a href="#">Politic</a></li>
-											<li class="list-inline-item">29 March 2021</li>
-										</ul>
-										<h5 class="post-title"><a href="blog-single.html">Your Light Is About To Stop Being Relevant</a></h5>
-										<p class="excerpt mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings</p>
-										<div class="post-bottom clearfix d-flex align-items-center">
-											<div class="social-share me-auto">
-												<button class="toggle-button icon-share"></button>
-												<ul class="icons list-unstyled list-inline mb-0">
-													<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
-													<li class="list-inline-item"><a href="#"><i class="far fa-envelope"></i></a></li>
-												</ul>
-											</div>
-											<div class="more-button float-end">
-												<a href="blog-single.html"><span class="icon-options"></span></a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
+                            @endforeach
 						</div
 						>
 						<!-- load more button -->
 						<div class="text-center">
-							<button class="btn btn-simple">Load More</button>
+							<a href="{{ route('all.blog') }}" class="btn btn-simple">Load More</a>
 						</div>
-
 					</div>
-
 				</div>
 				<div class="col-lg-4">
                     @include('frontend.Sidebar')
 				</div>
-
 			</div>
-
 		</div>
 	</section>
 @endsection

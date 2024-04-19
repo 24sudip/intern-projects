@@ -93,7 +93,7 @@
             @foreach ($minimal_blogs as $minimal_blog)
             <div class="post post-xl">
                 @php
-                    $comments = App\Models\Comment::where('blog_id',$minimal_blog->relation_to_blog->id)->get();
+                    $comments = App\Models\Comment::where('blog_id',$minimal_blog->relation_to_blog->id)->count();
                 @endphp
                 <!-- top section -->
                 <div class="post-top">
@@ -110,7 +110,7 @@
                             </a>
                         </li>
                         <li class="list-inline-item">{{ $minimal_blog->relation_to_blog->created_at->format('d M Y') }}</li>
-                        <li class="list-inline-item"><i class="icon-bubble"></i> ({{ $comments->count() }})</li>
+                        <li class="list-inline-item"><i class="icon-bubble"></i> ({{ $comments }})</li>
                     </ul>
                     <h5 class="post-title mb-0 mt-4">
                         <a href="{{ route('blog.details',$minimal_blog->relation_to_blog->id) }}">

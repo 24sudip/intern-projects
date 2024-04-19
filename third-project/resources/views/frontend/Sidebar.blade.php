@@ -22,58 +22,33 @@
             <h3 class="widget-title">Popular Posts</h3>
             <img src="{{ asset('frontend_assets') }}/images/wave.svg" class="wave" alt="wave" />
         </div>
+        @php
+            $popular_blogs = App\Models\Blog::orderBy('page_view','DESC')->limit(3)->get();
+        @endphp
         <div class="widget-content">
+            @foreach ($popular_blogs as $popular_blog)
             <!-- post -->
             <div class="post post-list-sm circle">
                 <div class="thumb circle">
-                    <span class="number">1</span>
-                    <a href="blog-single.html">
+                    @php
+                        $comments = App\Models\Comment::where('blog_id',$popular_blog->id)->count();
+                    @endphp
+                    <span class="number">{{ $comments }}</span>
+                    <a href="{{ route('blog.details', $popular_blog->id) }}">
                         <div class="inner">
-                            <img src="{{ asset('frontend_assets') }}/images/posts/tabs-1.jpg" alt="post-title" />
+                            <img src="{{ asset('upload/blog_photos') }}/{{ $popular_blog->blog_photo }}" alt="post-title" />
                         </div>
                     </a>
                 </div>
                 <div class="details clearfix">
-                    <h6 class="post-title my-0"><a href="blog-single.html">3 Easy Ways To Make Your iPhone Faster</a></h6>
+                    <h6 class="post-title my-0"><a href="{{ route('blog.details', $popular_blog->id) }}">
+                        {{ $popular_blog->blog_title }}</a></h6>
                     <ul class="meta list-inline mt-1 mb-0">
-                        <li class="list-inline-item">29 March 2021</li>
+                        <li class="list-inline-item">{{ $popular_blog->created_at->format('d M Y') }}</li>
                     </ul>
                 </div>
             </div>
-            <!-- post -->
-            <div class="post post-list-sm circle">
-                <div class="thumb circle">
-                    <span class="number">2</span>
-                    <a href="blog-single.html">
-                        <div class="inner">
-                            <img src="{{ asset('frontend_assets') }}/images/posts/tabs-2.jpg" alt="post-title" />
-                        </div>
-                    </a>
-                </div>
-                <div class="details clearfix">
-                    <h6 class="post-title my-0"><a href="blog-single.html">An Incredibly Easy Method That Works For All</a></h6>
-                    <ul class="meta list-inline mt-1 mb-0">
-                        <li class="list-inline-item">29 March 2021</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- post -->
-            <div class="post post-list-sm circle">
-                <div class="thumb circle">
-                    <span class="number">3</span>
-                    <a href="blog-single.html">
-                        <div class="inner">
-                            <img src="{{ asset('frontend_assets') }}/images/posts/tabs-3.jpg" alt="post-title" />
-                        </div>
-                    </a>
-                </div>
-                <div class="details clearfix">
-                    <h6 class="post-title my-0"><a href="blog-single.html">10 Ways To Immediately Start Selling Furniture</a></h6>
-                    <ul class="meta list-inline mt-1 mb-0">
-                        <li class="list-inline-item">29 March 2021</li>
-                    </ul>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 
@@ -84,16 +59,23 @@
             <img src="{{ asset('frontend_assets') }}/images/wave.svg" class="wave" alt="wave" />
         </div>
         <div class="widget-content">
+            @php
+                $categories = App\Models\Category::get(['id', 'category_name']);
+            @endphp
             <ul class="list">
-                <li><a href="#">Lifestyle</a><span>(5)</span></li>
-                <li><a href="#">Inspiration</a><span>(2)</span></li>
-                <li><a href="#">Fashion</a><span>(4)</span></li>
-                <li><a href="#">Politic</a><span>(1)</span></li>
-                <li><a href="#">Trending</a><span>(7)</span></li>
-                <li><a href="#">Culture</a><span>(3)</span></li>
+                @foreach ($categories as $category)
+                <li>
+                    <a href="{{ route('category.page', $category->id) }}">{{ $category->category_name }}</a>
+                    <span>
+                        @php
+                            $blog_num = App\Models\Blog::where('category_id',$category->id)->count();
+                        @endphp
+                        ({{ $blog_num }})
+                    </span>
+                </li>
+                @endforeach
             </ul>
         </div>
-
     </div>
 
     <!-- widget newsletter -->
@@ -121,55 +103,33 @@
             <img src="{{ asset('frontend_assets') }}/images/wave.svg" class="wave" alt="wave" />
         </div>
         <div class="widget-content">
+            @php
+                $celebrateds = App\Models\GroupInventory::where('group_name','Celebration')->latest()->limit(3)->get();
+            @endphp
             <div class="post-carousel-widget">
+                @foreach ($celebrateds as $celebrated)
                 <!-- post -->
                 <div class="post post-carousel">
                     <div class="thumb rounded">
-                        <a href="category.html" class="category-badge position-absolute">How to</a>
-                        <a href="blog-single.html">
+                        <a href="{{ route('category.page',$celebrated->relation_to_blog->category_id) }}" class="category-badge position-absolute">
+                            {{ $celebrated->relation_to_blog->relation_to_category->category_name }}
+                        </a>
+                        <a href="{{ route('blog.details',$celebrated->relation_to_blog->id) }}">
                             <div class="inner">
-                                <img src="{{ asset('frontend_assets') }}/images/widgets/widget-carousel-1.jpg" alt="post-title" />
+                                <img src="{{ asset('upload/blog_photos') }}/{{ $celebrated->relation_to_blog->blog_photo }}" alt="post-title" />
                             </div>
                         </a>
                     </div>
-                    <h5 class="post-title mb-0 mt-4"><a href="blog-single.html">5 Easy Ways You Can Turn Future Into Success</a></h5>
+                    <h5 class="post-title mb-0 mt-4"><a href="{{ route('blog.details', $celebrated->relation_to_blog->id) }}">
+                        {{ $celebrated->relation_to_blog->blog_title }}</a></h5>
                     <ul class="meta list-inline mt-2 mb-0">
-                        <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                        <li class="list-inline-item">29 March 2021</li>
+                        <li class="list-inline-item">
+                            <a href="{{ route('personal.page', $celebrated->relation_to_blog->blogger_id) }}">
+                            {{ $celebrated->relation_to_blog->relation_to_user->name }}</a></li>
+                        <li class="list-inline-item">{{ $celebrated->relation_to_blog->created_at->format('d M Y') }}</li>
                     </ul>
                 </div>
-                <!-- post -->
-                <div class="post post-carousel">
-                    <div class="thumb rounded">
-                        <a href="category.html" class="category-badge position-absolute">Trending</a>
-                        <a href="blog-single.html">
-                            <div class="inner">
-                                <img src="{{ asset('frontend_assets') }}/images/widgets/widget-carousel-2.jpg" alt="post-title" />
-                            </div>
-                        </a>
-                    </div>
-                    <h5 class="post-title mb-0 mt-4"><a href="blog-single.html">Master The Art Of Nature With These 7 Tips</a></h5>
-                    <ul class="meta list-inline mt-2 mb-0">
-                        <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                        <li class="list-inline-item">29 March 2021</li>
-                    </ul>
-                </div>
-                <!-- post -->
-                <div class="post post-carousel">
-                    <div class="thumb rounded">
-                        <a href="category.html" class="category-badge position-absolute">How to</a>
-                        <a href="blog-single.html">
-                            <div class="inner">
-                                <img src="{{ asset('frontend_assets') }}/images/widgets/widget-carousel-1.jpg" alt="post-title" />
-                            </div>
-                        </a>
-                    </div>
-                    <h5 class="post-title mb-0 mt-4"><a href="blog-single.html">5 Easy Ways You Can Turn Future Into Success</a></h5>
-                    <ul class="meta list-inline mt-2 mb-0">
-                        <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                        <li class="list-inline-item">29 March 2021</li>
-                    </ul>
-                </div>
+                @endforeach
             </div>
             <!-- carousel arrows -->
             <div class="slick-arrows-bot">
@@ -193,12 +153,13 @@
             <h3 class="widget-title">Tag Clouds</h3>
             <img src="{{ asset('frontend_assets') }}/images/wave.svg" class="wave" alt="wave" />
         </div>
+        @php
+            $tags = App\Models\Tag::get(['id','tag_name']);
+        @endphp
         <div class="widget-content">
-            <a href="#" class="tag">#Trending</a>
-            <a href="#" class="tag">#Video</a>
-            <a href="#" class="tag">#Featured</a>
-            <a href="#" class="tag">#Gallery</a>
-            <a href="#" class="tag">#Celebrities</a>
+            @foreach ($tags as $tag)
+            <a href="{{ route('tag.page', $tag->id) }}" class="tag">{{ $tag->tag_name }}</a>
+            @endforeach
         </div>
     </div>
 

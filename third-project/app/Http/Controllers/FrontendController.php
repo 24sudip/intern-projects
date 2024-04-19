@@ -10,6 +10,7 @@ class FrontendController extends Controller
 {
     function Index(){
         $tag = Tag::where('tag_name','#Trending')->first();
+        $category = Category::where('category_name','Inspiration')->first();
         return view('frontend.BloggerHome',[
             'featured_blog'=>Blog::where('feature_status','1')->first(),
             'popular_blogs'=>Blog::orderBy('page_view','DESC')->limit(4)->get(),
@@ -17,6 +18,7 @@ class FrontendController extends Controller
             'first_editor'=>GroupInventory::where('group_name','Editors-Pick')->latest()->first(),
             'all_editors'=>GroupInventory::where('group_name','Editors-Pick')->latest()->limit(5)->get(),
             'trending_tags'=>TagInventory::where('tag_id', $tag->id)->latest()->limit(6)->get(),
+            'inspi_blogs'=>Blog::where('category_id', $category->id)->latest()->limit(3)->get(),
         ]);
     }
 
@@ -107,6 +109,13 @@ class FrontendController extends Controller
     function AllBlog(){
         return view('frontend.AllBlog',[
             'blogs'=>Blog::latest()->paginate(6),
+        ]);
+    }
+
+    function TagPage($id){
+        return view('frontend.TagPage',[
+            'tagged'=> TagInventory::where('tag_id', $id)->get(),
+            'tag_name'=>Tag::find($id)->tag_name,
         ]);
     }
 }

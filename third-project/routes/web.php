@@ -22,6 +22,7 @@ Route::get('/admin/page', [FrontendController::class, 'AdminPage'])->name('admin
 Route::get('/minimal/page', [FrontendController::class, 'MinimalPage'])->name('minimal.page');
 Route::get('/classic/page', [FrontendController::class, 'ClassicPage'])->name('classic.page');
 Route::get('/all/blog', [FrontendController::class, 'AllBlog'])->name('all.blog');
+Route::get('/tag/page/{id}', [FrontendController::class, 'TagPage'])->name('tag.page');
 //
 Route::post('/comment/store/{id}', [FrontendController::class, 'CommentStore'])->name('comment.store');
 //
