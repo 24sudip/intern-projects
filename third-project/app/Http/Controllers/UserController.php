@@ -15,16 +15,18 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     function users(){
         $users = User::where('id','!=', Auth::id())->get();
         $total_user = User::count();
         return view('admin.user.users', compact('users','total_user'));
     }
 
-    function UserDelete($user_id){
+    function UserBlock($user_id){
         // echo "<h1>$user_id delete</h1>";
-        User::find($user_id)->delete();
+        User::find($user_id)->update([
+            'role'=>'blocked'
+        ]);
         return back();
     }
 

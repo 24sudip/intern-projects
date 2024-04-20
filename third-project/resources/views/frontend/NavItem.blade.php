@@ -14,7 +14,7 @@
 </li>
 @endauth
 <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="category.html">Category</a>
+    <a class="nav-link dropdown-toggle" href="">Category</a>
     @php
         $categories = App\Models\Category::get(['id', 'category_name']);
     @endphp

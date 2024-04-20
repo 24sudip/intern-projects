@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Blog, Category, TagInventory, Comment, Reply, User, GroupInventory, Tag};
+use App\Models\{Blog, Category, TagInventory, Comment, Reply, User, GroupInventory, Tag, Subscriber};
 use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
@@ -44,11 +44,19 @@ class FrontendController extends Controller
         Blog::findOrFail($id)->update([
             'page_view'=>$page_view,
         ]);
-        return view('frontend.BlogDetails',[
-            'blog'=>$blog,
-            'tag_invents'=>TagInventory::where('blog_id',$blog->id)->get(),
-            'comments'=>Comment::where('blog_id',$blog->id)->get(),
-        ]);
+        if ($blog->banner_theme == 0) {
+            return view('frontend.BlogDetails',[
+                'blog'=>$blog,
+                'tag_invents'=>TagInventory::where('blog_id',$blog->id)->get(),
+                'comments'=>Comment::where('blog_id',$blog->id)->get(),
+            ]);
+        } else {
+            return view('frontend.BlogAlt',[
+                'blog'=>$blog,
+                'tag_invents'=>TagInventory::where('blog_id',$blog->id)->get(),
+                'comments'=>Comment::where('blog_id',$blog->id)->get(),
+            ]);
+        }
     }
 
     function CommentStore(Request $request ,$id){
@@ -117,5 +125,24 @@ class FrontendController extends Controller
             'tagged'=> TagInventory::where('tag_id', $id)->get(),
             'tag_name'=>Tag::find($id)->tag_name,
         ]);
+    }
+
+    function SearchResult(Request $request){
+        // print_r($request->all());
+        return view('frontend.SearchResult',[
+            'blogs'=>Blog::where('blog_title','like',"%{$request->search_text}%")->get(),
+        ]);
+    }
+
+    function Subscribe(Request $request){
+        $request->validate([
+            'subscriber_email'=>'required|unique:subscribers',
+        ]);
+        Subscriber::insert([
+            'user_id'=>Auth::id(),
+            'subscriber_email'=>$request->subscriber_email,
+            'created_at'=>now(),
+        ]);
+        return back()->with('SubAdMsg','You Have Subscribed Successfully') ;
     }
 }

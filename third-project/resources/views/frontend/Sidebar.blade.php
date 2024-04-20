@@ -86,11 +86,24 @@
         </div>
         <div class="widget-content">
             <span class="newsletter-headline text-center mb-3">Join 70,000 subscribers!</span>
-            <form>
+            <form action="{{ route('subscribe') }}" method="POST">
+                @csrf
+
+                @auth()
                 <div class="mb-2">
-                    <input class="form-control w-100 text-center" placeholder="Email address…" type="email">
+                    <input class="form-control w-100 text-center" name="subscriber_email" value="{{ Auth::user()->email }}" type="email">
+                    @error('subscriber_email')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    @if (session('SubAdMsg'))
+                    <div class="alert alert-success">{{ session('SubAdMsg') }}</div>
+                    @endif
                 </div>
                 <button class="btn btn-default btn-full" type="submit">Sign Up</button>
+                @else
+                <span class="newsletter-headline text-center mb-3">Login To Subscribe</span>
+                @endauth
             </form>
             <span class="newsletter-privacy text-center mt-3">By signing up, you agree to our <a href="#">Privacy Policy</a></span>
         </div>

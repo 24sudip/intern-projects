@@ -82,8 +82,9 @@
 			<h3 class="mb-4 mt-0">Press ESC to close</h3>
 		</div>
 		<!-- form -->
-		<form class="d-flex search-form">
-			<input class="form-control me-2" type="search" placeholder="Search and press enter ..." aria-label="Search">
+		<form class="d-flex search-form" action="{{ route('search.result') }}" method="POST">
+            @csrf
+			<input class="form-control me-2" type="text" name="search_text" placeholder="Search and press enter ...">
 			<button class="btn btn-default btn-lg" type="submit"><i class="icon-magnifier"></i></button>
 		</form>
 	</div>
@@ -103,28 +104,40 @@
 	<nav>
 		<ul class="vertical-menu">
 			<li class="active">
-				<a href="index.html">Home</a>
+				<a href="{{ route('blogger.home') }}">Home</a>
 				<ul class="submenu">
-					<li><a href="index.html">Magazine</a></li>
-					<li><a href="personal.html">Personal</a></li>
-					<li><a href="personal-alt.html">Personal Alt</a></li>
-					<li><a href="minimal.html">Minimal</a></li>
-					<li><a href="classic.html">Classic</a></li>
+					<li><a href="{{ route('all.blog') }}">All Blogs</a></li>
 				</ul>
 			</li>
-			<li><a href="category.html">Lifestyle</a></li>
-			<li><a href="category.html">Inspiration</a></li>
+			<li class="active">
+                <a href="#">Category</a>
+                @php
+                    $categories = App\Models\Category::get(['id', 'category_name']);
+                @endphp
+                <ul class="submenu">
+                    @foreach ($categories as $category)
+                    <li>
+                        <a href="{{ route('category.page',$category->id) }}">
+                            {{ $category->category_name }}
+                        </a>
+                    </li>
+                    @endforeach
+                </ul>
+            </li>
+            @auth()
+            <li><a href="{{ route('home') }}">Dashboard</a></li>
+            @else
+            <li><a href="{{ url('/login') }}">Login</a></li>
+            @endauth
 			<li>
 				<a href="#">Pages</a>
 				<ul class="submenu">
-					<li><a href="category.html">Category</a></li>
-					<li><a href="blog-single.html">Blog Single</a></li>
-					<li><a href="blog-single-alt.html">Blog Single Alt</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li><a href="{{ route('minimal.page') }}">Minimal</a></li>
+                    <li><a href="{{ route('classic.page') }}">Classic</a></li>
 				</ul>
 			</li>
-			<li><a href="contact.html">Contact</a></li>
+			<li><a href="{{ route('about') }}">About</a></li>
+			<li><a href="{{ route('contact') }}">Contact</a></li>
 		</ul>
 	</nav>
 

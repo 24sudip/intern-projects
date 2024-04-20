@@ -51,6 +51,7 @@
             <table class="table table-bordered">
                 <thead>
                   <tr>
+                    <th scope="col">SL</th>
                     <th scope="col">Group Name</th>
                     <th scope="col">Created At</th>
                     <th scope="col">Action</th>
@@ -59,6 +60,7 @@
                 <tbody>
                     @forelse ($group_inventories as $group_invent)
                     <tr>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $group_invent->group_name }}</td>
                         <td>{{ $group_invent->created_at }}</td>
                         <td><a href="{{ route('group.inventory.delete', $group_invent->id) }}" class="btn btn-danger">Delete</a></td>

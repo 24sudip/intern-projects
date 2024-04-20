@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\{HomeController, UserController, FrontendController, CategoryController, BlogController, TagController};
-use App\Http\Controllers\{TagInventoryController, GroupInventoryController};
+use App\Http\Controllers\{TagInventoryController, GroupInventoryController, EmailController};
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -28,6 +28,9 @@ Route::post('/comment/store/{id}', [FrontendController::class, 'CommentStore'])-
 //
 Route::get('/reply/add/{id}', [FrontendController::class, 'ReplyAdd'])->name('reply.add');
 Route::post('/reply/store/{id}', [FrontendController::class, 'ReplyStore'])->name('reply.store');
+//
+Route::post('/search/result', [FrontendController::class, 'SearchResult'])->name('search.result');
+Route::post('/subscribe', [FrontendController::class, 'Subscribe'])->name('subscribe');
 // Frontend
 
 // Category part
@@ -59,9 +62,13 @@ Route::get('/group/inventory/delete/{id}', [GroupInventoryController::class, 'Gr
 
 // User
 Route::get('/users', [UserController::class, 'users'])->name('users');
-Route::get('/user/delete/{user_id}', [UserController::class, 'UserDelete'])->name('user.delete');
+Route::get('/user/block/{user_id}', [UserController::class, 'UserBlock'])->name('user.block');
 //
 Route::get('/edit/profile', [UserController::class, 'EditProfile'])->name('edit.profile');
 Route::post('/update/profile', [UserController::class, 'UpdateProfile'])->name('update.profile');
 Route::post('/update/profile/photo', [UserController::class, 'UpdateProfilePhoto'])->name('update.profile.photo');
 // User
+
+// Email
+Route::get('/send/subscriber/email', [EmailController::class, 'sendSubscriberEmail']);
+// Email

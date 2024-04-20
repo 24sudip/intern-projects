@@ -23,6 +23,7 @@
                                 <th>SL</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Created At</th>
                                 <th>Action</th>
                             </tr>
                             @foreach($users as $user)
@@ -30,7 +31,8 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td><a href="{{ route('user.delete', $user->id) }}" class="btn btn-danger">Delete</a></td>
+                                <td>{{ $user->created_at }}</td>
+                                <td><a href="{{ route('user.block', $user->id) }}" class="btn btn-danger">Block</a></td>
                             </tr>
                             @endforeach
                         </table>

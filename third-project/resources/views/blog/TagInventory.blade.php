@@ -48,7 +48,7 @@
             <table class="table table-bordered">
                 <thead>
                   <tr>
-                    {{-- <th scope="col">Color</th> --}}
+                    <th scope="col">SL</th>
                     <th scope="col">Tag Name</th>
                     <th scope="col">Created At</th>
                     <th scope="col">Action</th>
@@ -57,6 +57,7 @@
                 <tbody>
                     @forelse ($tag_inventories as $tag_invent)
                     <tr>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $tag_invent->relation_to_tag->tag_name }}</td>
                         <td>{{ $tag_invent->created_at }}</td>
                         <td><a href="{{ route('tag.inventory.delete', $tag_invent->id) }}" class="btn btn-danger">Delete</a></td>
