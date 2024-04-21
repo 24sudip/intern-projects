@@ -62,6 +62,7 @@ Route::get('/group/inventory/delete/{id}', [GroupInventoryController::class, 'Gr
 
 // User
 Route::get('/users', [UserController::class, 'users'])->name('users');
+Route::get('/subscriber/list', [UserController::class, 'SubscriberList'])->name('subscriber.list');
 Route::get('/user/block/{user_id}', [UserController::class, 'UserBlock'])->name('user.block');
 //
 Route::get('/edit/profile', [UserController::class, 'EditProfile'])->name('edit.profile');
@@ -71,4 +72,5 @@ Route::post('/update/profile/photo', [UserController::class, 'UpdateProfilePhoto
 
 // Email
 Route::get('/send/subscriber/email', [EmailController::class, 'sendSubscriberEmail']);
+Route::post('/contact/email', [EmailController::class, 'ContactEmail'])->name('contact.email') ;
 // Email

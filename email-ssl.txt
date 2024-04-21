@@ -34,7 +34,7 @@ Reply(Inventory):comment_id,reply_text,replier_id;
 //The Secrets To Finding Class Tools For Your Dress-fashion-Admin-minimal
 //How I Improved My Fashion Style In One Day-lifestyle-popular
 //Wondering How To Make Your Hair Style Rock?-fashion-minimal
-How To Make More Construction By Doing Less-How To
+//How To Make More Construction By Doing Less-How To
 Now You Can Have Your Thoughts Done Safely-Lifestyle
 //
 Creative IT Institute 2:33 PM

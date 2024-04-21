@@ -181,19 +181,14 @@
                     <li class="menu-item">
                         <a href="#menuForms" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bxs-eraser"></i></span>
-                            <span class="menu-text"> Forms </span>
+                            <span class="menu-text"> Subscriber List </span>
                             <span class="menu-arrow"></span>
                         </a>
                         <div class="collapse" id="menuForms">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a class='menu-link' href='forms-elements.html'>
-                                        <span class="menu-text">General Elements</span>
-                                    </a>
-                                </li>
-                                <li class="menu-item">
-                                    <a class='menu-link' href='forms-advanced.html'>
-                                        <span class="menu-text">Advanced</span>
+                                    <a class='menu-link' href='{{ route('subscriber.list') }}'>
+                                        <span class="menu-text">All Subscriber</span>
                                     </a>
                                 </li>
                             </ul>

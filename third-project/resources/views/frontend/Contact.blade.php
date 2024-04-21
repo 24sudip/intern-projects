@@ -66,17 +66,30 @@
                 <h3 class="section-title">Send Message</h3>
                 <img src="{{ asset('frontend_assets') }}/images/wave.svg" class="wave" alt="wave" />
             </div>
-
+            @if (session('CntMsg'))
+            <div class="alert alert-success">{{ session('CntMsg') }}</div>
+            @endif
             <!-- Contact Form -->
-            <form id="contact-form" class="contact-form" method="post">
-
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @if($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        @endif
+                    </ul>
+                </div>
+            @endif
+            <form id="contact-form" class="contact-form" action="{{ route('contact.email') }}" method="post">
+                @csrf
                 <div class="messages"></div>
 
                 <div class="row">
                     <div class="column col-md-6">
                         <!-- Name input -->
                         <div class="form-group">
-                            <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Your name" required="required" data-error="Name is required.">
+                            <input type="text" class="form-control" name="contact_name" id="InputName" placeholder="Your name" required="required" data-error="Name is required.">
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
@@ -84,15 +97,16 @@
                     <div class="column col-md-6">
                         <!-- Email input -->
                         <div class="form-group">
-                            <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Email address" required="required" data-error="Email is required.">
+                            <input type="email" class="form-control" id="InputEmail" name="contact_email"
+                            placeholder="Receiver's Email address" required="required" data-error="Email is required.">
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
 
                     <div class="column col-md-12">
-                        <!-- Email input -->
+                        <!-- Subject input -->
                         <div class="form-group">
-                            <input type="text" class="form-control" id="InputSubject" name="InputSubject" placeholder="Subject" required="required" data-error="Subject is required.">
+                            <input type="text" class="form-control" id="InputSubject" name="contact_subject" placeholder="Subject" required="required" data-error="Subject is required.">
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
@@ -100,7 +114,7 @@
                     <div class="column col-md-12">
                         <!-- Message textarea -->
                         <div class="form-group">
-                            <textarea name="InputMessage" id="InputMessage" class="form-control" rows="4" placeholder="Your message here..." required="required" data-error="Message is required."></textarea>
+                            <textarea name="contact_message" id="InputMessage" class="form-control" rows="4" placeholder="Your message here..." required="required" data-error="Message is required."></textarea>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>

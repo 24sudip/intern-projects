@@ -1,3 +1,4 @@
+<!-- Waste no more time arguing what a good man should be, be one. - Marcus Aurelius -->
 @extends('layouts.dashboardMaster')
 
 @section('content')
@@ -7,34 +8,30 @@
             <nav class="page-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">List Of Bloggers</li>
+                    <li class="breadcrumb-item active" aria-current="page">List Of Subscribers</li>
                 </ol>
             </nav>
         </div>
         <div class="row">
-            <div class="col-lg-10 m-auto">
+            <div class="col-lg-6 m-auto">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Blogger List <span class="float-end">Total: {{ $total_user }}</span></h3>
+                        <h3>Subscriber List <span class="float-end">Total: {{ $subscribers->count() }}</span></h3>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped">
                             <tr>
                                 <th>SL</th>
-                                <th>Name</th>
-                                <th>Email</th>
+                                <th>Subscriber Name</th>
+                                <th>Subscriber Email</th>
                                 <th>Created At</th>
-                                <th>Status</th>
-                                <th>Action</th>
                             </tr>
-                            @foreach($users as $user)
+                            @foreach($subscribers as $subscriber)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->created_at }}</td>
-                                <td>{{ $user->role }}</td>
-                                <td><a href="{{ route('user.block', $user->id) }}" class="btn btn-danger">Block</a></td>
+                                <td>{{ $subscriber->relation_to_user->name }}</td>
+                                <td>{{ $subscriber->subscriber_email }}</td>
+                                <td>{{ $subscriber->created_at }}</td>
                             </tr>
                             @endforeach
                         </table>

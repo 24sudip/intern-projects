@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\{User, Subscriber};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManager;
@@ -27,6 +27,7 @@ class UserController extends Controller
         User::find($user_id)->update([
             'role'=>'blocked'
         ]);
+        Subscriber::where('user_id',$user_id)->delete();
         return back();
     }
 
@@ -79,5 +80,11 @@ class UserController extends Controller
         } else {
             return back()->with('PhotoErrMsg','Profile Photo Is Required');
         }
+    }
+
+    function SubscriberList(){
+        return view('admin.user.SubscriberList',[
+            'subscribers'=>Subscriber::all(),
+        ]);
     }
 }

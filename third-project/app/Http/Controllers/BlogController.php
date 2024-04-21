@@ -68,7 +68,7 @@ class BlogController extends Controller
         Blog::find($blog->id)->update([
             'blog_photo'=>$new_name,
         ]);
-        return back()->with('BlgAdMsg','Blog Added Successfully');
+        return redirect('/send/subscriber/email');
     }
 
     /**

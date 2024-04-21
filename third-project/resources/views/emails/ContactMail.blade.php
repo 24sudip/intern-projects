@@ -1,4 +1,4 @@
-<!-- Because you are alive, everything is possible. - Thich Nhat Hanh -->
+<!-- It is not the man who has too little, but the man who craves more, that is poor. - Seneca -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +8,8 @@
     <title>Email</title>
 </head>
 <body>
-    <h2>{{ $title }}</h2>
-    <h1>{{ $body }}</h1>
+    <h2>From: {{ $contact_name }}</h2>
+    <h2>Subject: {{ $contact_subject }}</h2>
+    <h1>Message: {{ $contact_message }}</h1>
 </body>
 </html>
