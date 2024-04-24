@@ -147,7 +147,7 @@
 								<div class="details">
 									<h4 class="name"><a href="{{ route('personal.page', $comment->relation_to_user->id) }}">
                                         {{ $comment->relation_to_user->name }}</a></h4>
-									<span class="date">{{ $comment->created_at }}</span>
+									<span class="date">{{ $comment->created_at->diffForHumans() }}</span>
 									<p>{{ $comment->comment_text }}</p>
                                     @auth
                                     <a href="{{ route('reply.add', $comment->id) }}" class="btn btn-default btn-sm">Reply</a>
@@ -170,10 +170,33 @@
                                     <div class="details">
                                         <h4 class="name"><a href="{{ route('personal.page', $reply->relation_to_user->id) }}">
                                             {{ $reply->relation_to_user->name }}</a></h4>
-                                        <span class="date">{{ $reply->created_at }}</span>
+                                        <span class="date">{{ $reply->created_at->diffForHumans() }}</span>
                                         <p>{{ $reply->reply_text }}</p>
                                     </div>
                                 </li>
+                                @php
+                                    $second_replies = App\Models\SecondReply::where('reply_id',$reply->id)->get();
+                                @endphp
+                                    <!-- second_reply -->
+                                    <ul class="comments ms-5">
+                                        @foreach ($second_replies as $second_reply)
+                                        <li class="comment child rounded">
+                                            <div class="thumb">
+                                                @if ($second_reply->relation_to_user->profile_photo)
+                                                <img width="40" src="{{ asset('upload/profile_photos') }}/{{ $second_reply->relation_to_user->profile_photo }}" class="author" alt="author"/>
+                                                @else
+                                                <img width="40" src="{{ asset('upload/profile_photos/default_profile_photo.jpg') }}">
+                                                @endif
+                                            </div>
+                                            <div class="details">
+                                                <h4 class="name"><a href="{{ route('personal.page', $second_reply->relation_to_user->id) }}">
+                                                    {{ $second_reply->relation_to_user->name }}</a></h4>
+                                                <span class="date">{{ $second_reply->created_at->diffForHumans() }}</span>
+                                                <p>{{ $second_reply->second_reply_text }}</p>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
                                 @endforeach
                             @endforeach
 						</ul>

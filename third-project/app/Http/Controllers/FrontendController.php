@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Blog, Category, TagInventory, Comment, Reply, User, GroupInventory, Tag, Subscriber};
+use App\Models\{Blog, Category, TagInventory, Comment, Reply, User, GroupInventory, Tag, Subscriber, SecondReply};
 use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
@@ -80,6 +80,22 @@ class FrontendController extends Controller
             'comment_id'=>$id,
             'reply_text'=>$request->reply_text,
             'replier_id'=>Auth::id(),
+            'created_at'=>now(),
+        ]);
+        return redirect()->route('blog.details', $request->blog_id);
+    }
+
+    function SecondReplyAdd($id){
+        return view('frontend.SecondReplyAdd',[
+            'reply'=>Reply::find($id),
+        ]);
+    }
+
+    function SecondReplyStore(Request $request, $id){
+        SecondReply::insert([
+            'reply_id'=>$id,
+            'second_reply_text'=>$request->second_reply_text,
+            'second_replier_id'=>Auth::id(),
             'created_at'=>now(),
         ]);
         return redirect()->route('blog.details', $request->blog_id);

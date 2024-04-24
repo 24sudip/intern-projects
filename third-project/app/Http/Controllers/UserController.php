@@ -87,4 +87,8 @@ class UserController extends Controller
             'subscribers'=>Subscriber::all(),
         ]);
     }
+
+    function SocialLink(){
+        return view('admin.user.SocialLink');
+    }
 }

@@ -96,20 +96,14 @@
                     <li class="menu-item">
                         <a href="#menuLayouts" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bx-layout"></i></span>
-                            <span class="menu-text"> Layouts </span>
+                            <span class="menu-text"> Social Media Links </span>
                             {{-- <span class="badge bg-blue ms-auto">New</span> --}}
                         </a>
                         <div class="collapse" id="menuLayouts">
                             <ul class="sub-menu">
                                 <li class="menu-item">
-                                    <a class='menu-link' href='layout-horizontal.html'>
-                                        <span class="menu-text">Horizontal</span>
-                                    </a>
-                                </li>
-
-                                <li class="menu-item">
-                                    <a class='menu-link' href='layout-sidenav-light.html'>
-                                        <span class="menu-text">Sidenav Light</span>
+                                    <a class='menu-link' href='{{ route('social.link') }}'>
+                                        <span class="menu-text">Add/View Social Link</span>
                                     </a>
                                 </li>
                             </ul>

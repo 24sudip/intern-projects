@@ -29,6 +29,9 @@ Route::post('/comment/store/{id}', [FrontendController::class, 'CommentStore'])-
 Route::get('/reply/add/{id}', [FrontendController::class, 'ReplyAdd'])->name('reply.add');
 Route::post('/reply/store/{id}', [FrontendController::class, 'ReplyStore'])->name('reply.store');
 //
+Route::get('/second/reply/add/{id}', [FrontendController::class, 'SecondReplyAdd'])->name('second.reply.add');
+Route::post('/second/reply/store/{id}', [FrontendController::class, 'SecondReplyStore'])->name('second.reply.store');
+//
 Route::post('/search/result', [FrontendController::class, 'SearchResult'])->name('search.result');
 Route::post('/subscribe', [FrontendController::class, 'Subscribe'])->name('subscribe');
 // Frontend
@@ -74,3 +77,7 @@ Route::post('/update/profile/photo', [UserController::class, 'UpdateProfilePhoto
 Route::get('/send/subscriber/email', [EmailController::class, 'sendSubscriberEmail']);
 Route::post('/contact/email', [EmailController::class, 'ContactEmail'])->name('contact.email') ;
 // Email
+
+// Social Media Link
+Route::get('/social/link', [UserController::class, 'SocialLink'])->name('social.link');
+// Social Media Link

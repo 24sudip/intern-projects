@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Blog;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $blogs = Blog::where('blogger_id', Auth::id())->get();
+        return view('home',[
+            'blog_number'=> $blogs->count(),
+            'blogs'=>$blogs,
+        ]);
     }
 }
