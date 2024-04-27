@@ -189,7 +189,7 @@
                         </div>
                     </li>
 
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="#menuTables" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bx-table"></i></span>
                             <span class="menu-text"> Tables </span>
@@ -209,9 +209,9 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="#menuCharts" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bx-doughnut-chart"></i></span>
                             <span class="menu-text"> Charts </span>
@@ -231,9 +231,9 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="#menuMaps" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bx-map-alt"></i></span>
                             <span class="menu-text"> Maps </span>
@@ -253,9 +253,9 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
 
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="#menuMultilevel" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
                             <span class="menu-icon"><i class="bx bx-share-alt"></i></span>
                             <span class="menu-text"> Multi Level </span>
@@ -324,7 +324,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
                     @endif
                 </ul>
             </div>

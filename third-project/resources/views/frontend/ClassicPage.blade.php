@@ -231,15 +231,7 @@
 						</div>
 					</div>
                     @endforeach
-					<nav>
-						<ul class="pagination justify-content-center">
-							<li class="page-item active" aria-current="page">
-								<span class="page-link">1</span>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-						</ul>
-					</nav>
+					{{ $classic_blogs->onEachSide(1)->links() }}
 				</div>
 				<div class="col-lg-4">
 					@include('frontend.Sidebar')

@@ -39,6 +39,18 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>{{ $new_blog - $track->last_total_blog}} New Blogs Have Been Created</h2>
+                <h2>Last Email Sent {{ $track->updated_at->diffForHumans() }}</h2>
+            </div>
+            <div class="col-lg-3">
+                @if (session('EmlSntMsg'))
+                <div class="alert alert-success">{{ session('EmlSntMsg') }}</div>
+                @endif
+                <a href="{{ url('/send/subscriber/email') }}" class="btn btn-primary">Send Email To All Subscribers</a>
+            </div>
+        </div>
     </div>
     @else
     <h1>Only Admin Is Allowed To See This Page</h1>

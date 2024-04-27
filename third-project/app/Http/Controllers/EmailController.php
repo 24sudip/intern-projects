@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Subscriber;
+use App\Models\{Subscriber, SendSubscriber, Blog};
 use Illuminate\Support\Facades\Mail;
 use App\Mail\{SubscriberMail, ContactMail};
 
@@ -18,8 +18,11 @@ class EmailController extends Controller
         foreach ($subscribers as $subscriber) {
             Mail::to($subscriber->subscriber_email)->send(new SubscriberMail($title, $body));
         }
+        SendSubscriber::first()->update([
+            'last_total_blog'=> Blog::all()->count(),
+        ]);
 
-        return redirect()->route('blog.create')->with('BlgAdMsg','Blog Added Successfully');
+        return back()->with('EmlSntMsg','Email Sent Successfully');
     }
 
     public function ContactEmail(Request $request){

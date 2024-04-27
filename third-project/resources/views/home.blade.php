@@ -26,11 +26,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4">
-            <h2>Blogs</h2>
-            <h2 class="mt-5">{{ $blog_number }}</h2>
+        <div class="col-lg-2">
+            <h2>Total Blogs</h2>
+            <h2 class="mt-5">{{ $blogs->count() }}</h2>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-10">
             <h2>Comments</h2>
             <table class="table">
                 <thead>
@@ -38,7 +38,11 @@
                     <th scope="col">SL</th>
                     <th scope="col">Blog Title</th>
                     <th scope="col">Comment</th>
-                    <th scope="col">Date</th>
+                    <th scope="col">Views</th>
+                    @php
+                        $comment_serial = 1;
+                        $unread_comment = 0;
+                    @endphp
                     </tr>
                 </thead>
                 <tbody>
@@ -48,23 +52,45 @@
                         <td>{{ $blog->blog_title }}</td>
                         @php
                             $comments = App\Models\Comment::where('blog_id',$blog->id)->get();
-                            $comment_serial = 1;
                         @endphp
                         <td>
                             <table class="table">
                                 @foreach ($comments as $comment)
                                 <tr>
                                     <th scope="row">{{ $comment_serial++ }}</th>
-                                    <td>{{ $comment->comment_text }}</td>
+                                    <td>
+                                        <a href="{{ route('comment.details', $comment->id) }}">
+                                            <style>
+                                                .comment_text {
+                                                    text-decoration: underline;
+                                                    font-weight: 800;
+                                                    color: #222;
+                                                }
+                                            </style>
+                                            @if ($comment->reading_status == 0)
+                                                <input type="hidden" value="{{ $unread_comment++ }}">
+                                            <span class="comment_text">
+                                                {{ $comment->comment_text }}
+                                            </span>
+                                            @else
+                                            <span>
+                                                {{ $comment->comment_text }}
+                                            </span>
+                                            @endif
+                                        </a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </table>
                         </td>
-                        <td>@mdo</td>
+                        <td>{{ $blog->page_view }}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="col-lg-12">
+            <h2>Unread Comments {{ $unread_comment }}</h2>
         </div>
     </div>
 </div>

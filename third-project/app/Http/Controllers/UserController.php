@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{User, Subscriber};
+use App\Models\{User, Subscriber, SendSubscriber, Blog};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManager;
@@ -85,6 +85,8 @@ class UserController extends Controller
     function SubscriberList(){
         return view('admin.user.SubscriberList',[
             'subscribers'=>Subscriber::all(),
+            'track'=>SendSubscriber::first(),
+            'new_blog'=>Blog::all()->count(),
         ]);
     }
 

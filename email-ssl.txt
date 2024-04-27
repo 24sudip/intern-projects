@@ -1,9 +1,31 @@
+https://drive.google.com/drive/folders/1O1OPhWLfqqhHvE8G-G3_RUN7bLcOKf58?usp=sharing
+fourth_project
+role: Librarian,Member;
+books: title,author,subject_category,publication_date,rack_number;
+
+//
+@php
+        $breads = Request::segments();
+        array_pop($breads);
+@endphp
+
+ @foreach ($breads as $segment)
+    <li class="breadcrumb-item active" aria-current="page">
+         {{ucwords($segment)}}
+    </li>
+@endforeach
+ .breadcrumb-item+.breadcrumb-item::before {
+            content: '' !important;
+        }
+$slug = str_replace(' ', '_', str::lower(substr($clean_title, 1, 30)));
+$clean_title = preg_replace('/[^A-Za-z0-9\- ]/', '', $request->title);
 ====
 BookingDates::where('email',$request->email)
     ->orWhere('name','like',"%{$request->name}%")->get();
 dd(DB::getQueryLog())
 preg_replace("/[^A-Za-z0-9 ]/", '', $search);
 ====
+php artisan make:migration add_deleted_at_to_posts_table --table=posts
 category: category_name,page_status;
 blog: blog_title,blogger_id,category_id,blog_photo,blog_intro,blog_detail,page_view(0),
 	feature_status(Not-Featured),

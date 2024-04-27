@@ -39,6 +39,9 @@
                             @csrf
 
                             <div class="form-group mb-3">
+                                @if (session('msg'))
+                                <div class="alert alert-danger">{{ session('msg') }}</div>
+                                @endif
                                 <label class="form-label" for="email">Email address</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required="" placeholder="Enter your email">
 

@@ -4,12 +4,14 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\{HomeController, UserController, FrontendController, CategoryController, BlogController, TagController};
 use App\Http\Controllers\{TagInventoryController, GroupInventoryController, EmailController};
+// use App\Http\Controllers\Auth\LoginController;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::post('/custom/login', [FrontendController::class, 'authenticate'])->name('custom.login');
 
 // Frontend
 Route::get('/', [FrontendController::class, 'Index'])->name('blogger.home');
@@ -81,3 +83,5 @@ Route::post('/contact/email', [EmailController::class, 'ContactEmail'])->name('c
 // Social Media Link
 Route::get('/social/link', [UserController::class, 'SocialLink'])->name('social.link');
 // Social Media Link
+
+Route::get('/comment/details/{id}', [HomeController::class, 'CommentDetails'])->name('comment.details');

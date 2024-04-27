@@ -82,14 +82,18 @@
                                     @endforeach
 								</div>
 								<div class="col-md-6 col-12">
+                                    @php
+                                        $media_links = App\Models\MediaLink::where('blogger_id',$blog->blogger_id)->get();
+                                    @endphp
 									<!-- social icons -->
 									<ul class="social-icons list-unstyled list-inline mb-0 float-md-end">
-										<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-										<li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-										<li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-										<li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-										<li class="list-inline-item"><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
-										<li class="list-inline-item"><a href="#"><i class="far fa-envelope"></i></a></li>
+										@foreach ($media_links as $media_link)
+										<li class="list-inline-item">
+                                            <a href="{{ $media_link->following_link }}">
+                                                <i class="{{ $media_link->link_icon }}"></i>
+                                            </a>
+                                        </li>
+                                        @endforeach
 									</ul>
 								</div>
 							</div>
@@ -113,12 +117,13 @@
 							<p>Hello, I’m a content writer who is fascinated by content fashion, celebrity and lifestyle. She helps clients bring the right content to the right people.</p>
 							<!-- social icons -->
 							<ul class="social-icons list-unstyled list-inline mb-0">
-								<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-								<li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-								<li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-								<li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-								<li class="list-inline-item"><a href="#"><i class="fab fa-medium"></i></a></li>
-								<li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
+								@foreach ($media_links as $media_link)
+                                <li class="list-inline-item">
+                                    <a href="{{ $media_link->following_link }}">
+                                        <i class="{{ $media_link->link_icon }}"></i>
+                                    </a>
+                                </li>
+                                @endforeach
 							</ul>
 						</div>
 					</div>

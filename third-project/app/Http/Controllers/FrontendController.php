@@ -3,11 +3,36 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Blog, Category, TagInventory, Comment, Reply, User, GroupInventory, Tag, Subscriber, SecondReply};
+use App\Models\{Blog, Category, TagInventory, Comment, Reply, User, GroupInventory, Tag, Subscriber, SecondReply, MediaLink};
 use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
 {
+    // public function authenticate(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => ['required', 'email'],
+    //         'password' => ['required'],
+    //     ]);
+
+    //     if (Auth::attempt($credentials)) {
+    //         if (Auth::user()->role != 'blocked') {
+    //             $request->session()->regenerate();
+
+    //             return redirect()->route('home');
+    //         } else {
+    //             return back()->withErrors([
+    //                 'email' => 'Your Account Is Blocked. Please Contact Admin',
+    //             ])->onlyInput('email');
+    //         }
+
+    //     }
+
+    //     return back()->withErrors([
+    //         'email' => 'The provided credentials do not match our records.',
+    //     ])->onlyInput('email');
+    // }
+
     function Index(){
         $tag = Tag::where('tag_name','#Trending')->first();
         $category = Category::where('category_name','Inspiration')->first();
@@ -32,7 +57,7 @@ class FrontendController extends Controller
 
     function CategoryPage($id){
         return view('frontend.CategoryPage',[
-            'blogs'=>Blog::where('category_id',$id)->latest()->get(),
+            'blogs'=>Blog::where('category_id',$id)->latest()->paginate(2),
             'category'=>Category::where('id',$id)->first(),
         ]);
     }
@@ -104,7 +129,7 @@ class FrontendController extends Controller
     function PersonalPage($id){
         return view('frontend.PersonalPage',[
             'user'=> User::find($id),
-            'blogs'=>Blog::where('blogger_id',$id)->latest()->get(),
+            'blogs'=>Blog::where('blogger_id',$id)->latest()->paginate(2),
         ]);
     }
 
@@ -112,20 +137,20 @@ class FrontendController extends Controller
         $user= User::where('role','admin')->first();
         return view('frontend.AdminPage',[
             'user'=> $user,
-            'blogs'=>Blog::where('blogger_id',$user->id)->latest()->get(),
+            'blogs'=>Blog::where('blogger_id',$user->id)->latest()->paginate(2),
             'group_blogs'=>GroupInventory::where('group_name','Personal-Slider')->latest()->limit(6)->get(),
         ]);
     }
 
     function MinimalPage(){
         return view('frontend.MinimalPage',[
-            'minimal_blogs'=>GroupInventory::where('group_name','Minimal')->latest()->get(),
+            'minimal_blogs'=>GroupInventory::where('group_name','Minimal')->latest()->paginate(2),
         ]);
     }
 
     function ClassicPage(){
         return view('frontend.ClassicPage',[
-            'classic_blogs'=>GroupInventory::where('group_name','Classic')->latest()->get(),
+            'classic_blogs'=>GroupInventory::where('group_name','Classic')->latest()->paginate(2),
             'classic_sliders'=>GroupInventory::where('group_name','Classic-Slider')->limit(2)->get(),
         ]);
     }
