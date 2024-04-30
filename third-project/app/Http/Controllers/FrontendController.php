@@ -8,31 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
 {
-    // public function authenticate(Request $request)
-    // {
-    //     $credentials = $request->validate([
-    //         'email' => ['required', 'email'],
-    //         'password' => ['required'],
-    //     ]);
-
-    //     if (Auth::attempt($credentials)) {
-    //         if (Auth::user()->role != 'blocked') {
-    //             $request->session()->regenerate();
-
-    //             return redirect()->route('home');
-    //         } else {
-    //             return back()->withErrors([
-    //                 'email' => 'Your Account Is Blocked. Please Contact Admin',
-    //             ])->onlyInput('email');
-    //         }
-
-    //     }
-
-    //     return back()->withErrors([
-    //         'email' => 'The provided credentials do not match our records.',
-    //     ])->onlyInput('email');
-    // }
-
     function Index(){
         $tag = Tag::where('tag_name','#Trending')->first();
         $category = Category::where('category_name','Inspiration')->first();

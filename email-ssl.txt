@@ -1,8 +1,14 @@
 https://drive.google.com/drive/folders/1O1OPhWLfqqhHvE8G-G3_RUN7bLcOKf58?usp=sharing
 fourth_project
-role: Librarian,Member;
-books: title,author,subject_category,publication_date,rack_number;
-
+maximum_books=5, maximum_days = 10;
+users: role->librarian,member;=list/cancel-membership;
+books: title,author,subject,publication_date,isbn,rack_number,number_of_copies,
+status->available/reserved;
+format->hardcover,paperback,audiobook,ebook,newspaper,magazine,journal
+=crud
+Inventory: user_id,book_id,item_number,due_date,return_date,fine,reserve_status;
+ReservAvailMail,ReservCancelMail,OverdueMail;
+borrow,reserve,renew/reborrow,return
 //
 @php
         $breads = Request::segments();

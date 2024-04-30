@@ -138,7 +138,8 @@
 								<div class="details">
 									<h4 class="name"><a href="{{ route('personal.page', $comment->relation_to_user->id) }}">
                                         {{ $comment->relation_to_user->name }}</a></h4>
-									<span class="date">{{ $comment->created_at->diffForHumans() }}</span>
+									<span class="date">{{ $comment->created_at->format('d M Y') }}</span>
+									<p class="date">{{ $comment->created_at->diffForHumans() }}</p>
 									<p>{{ $comment->comment_text }}</p>
                                     @auth
                                     <a href="{{ route('reply.add', $comment->id) }}" class="btn btn-default btn-sm">Reply</a>
@@ -161,7 +162,8 @@
                                     <div class="details">
                                         <h4 class="name"><a href="{{ route('personal.page', $reply->relation_to_user->id) }}">
                                             {{ $reply->relation_to_user->name }}</a></h4>
-                                        <span class="date">{{ $reply->created_at->diffForHumans() }}</span>
+                                        <span class="date">{{ $reply->created_at->format('d M Y') }}</span>
+                                        <p class="date">{{ $reply->created_at->diffForHumans() }}</p>
                                         <p>{{ $reply->reply_text }}</p>
                                         @auth
                                         <a href="{{ route('second.reply.add', $reply->id) }}" class="btn btn-default btn-sm">Reply Again</a>
@@ -185,7 +187,8 @@
                                             <div class="details">
                                                 <h4 class="name"><a href="{{ route('personal.page', $second_reply->relation_to_user->id) }}">
                                                     {{ $second_reply->relation_to_user->name }}</a></h4>
-                                                <span class="date">{{ $second_reply->created_at->diffForHumans() }}</span>
+                                                <span class="date">{{ $second_reply->created_at->format('d M Y') }}</span>
+                                                <p class="date">{{ $second_reply->created_at->diffForHumans() }}</p>
                                                 <p>{{ $second_reply->second_reply_text }}</p>
                                             </div>
                                         </li>
