@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Highdmin - Responsive Bootstrap 4 Admin Dashboard</title>
+        <title>Highdmin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -283,7 +283,7 @@
                                     </div>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <a href="{{ route('edit.profile') }}" class="dropdown-item notify-item">
                                         <i class="fi-head"></i> <span>Edit Profile</span>
                                     </a>
 
@@ -353,8 +353,6 @@
         </div>
         <!-- END wrapper -->
 
-
-
         <!-- jQuery  -->
         <script src="{{ asset('dashboard_assets') }}/js/jquery.min.js"></script>
         <script src="{{ asset('dashboard_assets') }}/js/popper.min.js"></script>
@@ -362,6 +360,10 @@
         <script src="{{ asset('dashboard_assets') }}/js/metisMenu.min.js"></script>
         <script src="{{ asset('dashboard_assets') }}/js/waves.js"></script>
         <script src="{{ asset('dashboard_assets') }}/js/jquery.slimscroll.js"></script>
+
+        <!-- Chart JS -->
+        <script src="{{ asset('plugins') }}/chart.js/chart.bundle.js"></script>
+        <script src="{{ asset('dashboard_assets') }}/pages/jquery.chartjs.init.js"></script>
 
         <!-- Flot chart -->
         <script src="{{ asset('plugins') }}/flot-chart/jquery.flot.min.js"></script>
@@ -374,9 +376,7 @@
         <script src="{{ asset('plugins') }}/flot-chart/jquery.flot.axislabels.js"></script>
 
         <!-- KNOB JS -->
-        <!--[if IE]>
         <script type="text/javascript" src="{{ asset('plugins') }}/jquery-knob/excanvas.js"></script>
-        <![endif]-->
         <script src="{{ asset('plugins') }}/jquery-knob/jquery.knob.js"></script>
 
         <!-- Dashboard Init -->

@@ -16,7 +16,7 @@ class EmailController extends Controller
         $subscribers = Subscriber::all();
 
         foreach ($subscribers as $subscriber) {
-            Mail::to($subscriber->subscriber_email)->send(new SubscriberMail($title, $body));
+            Mail::to($subscriber->subscriber_email)->queue(new SubscriberMail($title, $body));
         }
         SendSubscriber::first()->update([
             'last_total_blog'=> Blog::all()->count(),

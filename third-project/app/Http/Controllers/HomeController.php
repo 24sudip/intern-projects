@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Blog, Comment, Reply};
+use App\Models\{Blog, Comment, Reply, User};
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -29,6 +29,7 @@ class HomeController extends Controller
             $blogs = Blog::where('blogger_id', Auth::id())->get(['id','blog_title']);
             return view('home',[
                 'blogs'=>$blogs,
+                'users'=>User::all(),
             ]);
         } else {
             Auth::logout();
