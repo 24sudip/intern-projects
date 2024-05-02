@@ -18,3 +18,7 @@ Route::get('/edit/profile', [UserController::class, 'EditProfile'])->name('edit.
 Route::post('/profile/update', [UserController::class, 'ProfileUpdate'])->name('profile.update');
 Route::post('/update/profile/photo', [UserController::class, 'UpdateProfilePhoto'])->name('update.profile.photo');
 // User
+
+// Book
+Route::get('/category/page', [UserController::class, 'CategoryPage'])->name('category.page');
+// Book

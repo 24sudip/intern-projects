@@ -48,10 +48,14 @@
                     <!-- User box -->
                     <div class="user-box">
                         <div class="user-img">
-                            <img src="{{ asset('dashboard_assets') }}/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
+                            @if (Auth::user()->profile_photo == NULL)
+                            <img src="{{ asset('upload/profile_photos/default_profile_photo.jpg') }}" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
+                            @else
+                            <img src="{{ asset('upload/profile_photos') }}/{{ Auth::user()->profile_photo }}" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
+                            @endif
                         </div>
-                        <h5><a href="#">Maxine Kennedy</a> </h5>
-                        <p class="text-muted">Admin Head</p>
+                        <h5><a href="#">{{ Auth::user()->name }}</a> </h5>
+                        <p class="text-muted" style="text-transform: capitalize">{{ Auth::user()->role }}</p>
                     </div>
 
                     <!--- Sidemenu -->
@@ -68,7 +72,7 @@
                                     <span> Dashboard </span>
                                 </a>
                             </li>
-
+                            @if (Auth::user()->role == 'librarian')
                             <li>
                                 <a href="javascript: void(0);"><i class="fi-layers"></i> <span> Users </span> <span class="menu-arrow"></span></a>
                                 <ul class="nav-second-level" aria-expanded="false">
@@ -78,12 +82,12 @@
                             </li>
 
                             <li>
-                                <a href="javascript: void(0);"><i class="fi-mail"></i><span> Email </span> <span class="menu-arrow"></span></a>
+                                <a href="javascript: void(0);"><i class="fi-mail"></i><span>Subject Category</span> <span class="menu-arrow"></span></a>
                                 <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="email-inbox.html">Inbox</a></li>
-                                    <li><a href="email-read.html">Read Email</a></li>
+                                    <li><a href="email-inbox.html">Add/View Category</a></li>
                                 </ul>
                             </li>
+                            @endif
 
                             <li>
                                 <a href="javascript: void(0);"><i class="fi-layout"></i><span> Layouts </span> <span class="menu-arrow"></span></a>
@@ -274,7 +278,12 @@
                             <li class="dropdown notification-list">
                                 <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
-                                    <img src="{{ asset('dashboard_assets') }}/images/users/avatar-1.jpg" alt="user" class="rounded-circle"> <span class="ml-1">Maxine K <i class="mdi mdi-chevron-down"></i> </span>
+                                    @if (Auth::user()->profile_photo == NULL)
+                                    <img src="{{ asset('upload/profile_photos/default_profile_photo.jpg') }}" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
+                                    @else
+                                    <img src="{{ asset('upload/profile_photos') }}/{{ Auth::user()->profile_photo }}" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
+                                    @endif
+                                    <span class="ml-1">{{ Auth::user()->name }}<i class="mdi mdi-chevron-down"></i> </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
                                     <!-- item-->
