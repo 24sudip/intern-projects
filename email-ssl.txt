@@ -2,11 +2,10 @@ https://drive.google.com/drive/folders/1O1OPhWLfqqhHvE8G-G3_RUN7bLcOKf58?usp=sha
 fourth_project
 maximum_books=5, maximum_days = 10;
 users: role->librarian,member;=list/cancel-membership;
-books: title,author,subject,publication_date,isbn,rack_number,number_of_copies,
-status->available/reserved;
-format->hardcover,paperback,audiobook,ebook,newspaper,magazine,journal
+books: subject_id, title, author, publication_date, rack_number, number_of_copy,book_photo
+format->hardcover, paperback, audiobook, eBook, newspaper, magazine, journal
 =crud
-Inventory: user_id,book_id,item_number,due_date,return_date,fine,reserve_status;
+Inventory: user_id, book_id, due_date, borrowing_date , return_date, over_due, status->borrowed/not-returned/returned;
 ReservAvailMail,ReservCancelMail,OverdueMail;
 borrow,reserve,renew/reborrow,return
 //

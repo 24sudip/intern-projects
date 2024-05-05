@@ -4,7 +4,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 m-auto">
+        <div class="col-lg-10 m-auto">
             <div class="card">
                 <div class="card-header">
                     <h3>User List <span style="float:right;">Total {{ $total_user }}</span></h3>
@@ -15,6 +15,7 @@
                             <th>SL</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                         @foreach($users as $user)
@@ -22,7 +23,21 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td><a href="{{ route('user.delete', $user->id) }}" class="btn btn-danger">Delete</a></td>
+                            <td>{{ $user->role }}</td>
+                            <td>
+                                <form action="{{ route('user.status', $user->id) }}" method="POST">
+                                    @csrf
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                            Action button
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <button class="dropdown-item" name="role" value="canceled" type="submit">Cancel</button>
+                                            <button class="dropdown-item" name="role" value="member" type="submit">Renew</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                     </table>

@@ -12,6 +12,15 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset('dashboard_assets') }}/images/favicon.ico">
 
+        <!-- DataTables -->
+        <link href="{{ asset('plugins') }}/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('plugins') }}/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="{{ asset('plugins') }}/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Multi Item Selection examples -->
+        <link href="{{ asset('plugins') }}/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
         <!-- App css -->
         <link href="{{ asset('dashboard_assets') }}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="{{ asset('dashboard_assets') }}/css/icons.css" rel="stylesheet" type="text/css" />
@@ -84,18 +93,19 @@
                             <li>
                                 <a href="javascript: void(0);"><i class="fi-mail"></i><span>Subject Category</span> <span class="menu-arrow"></span></a>
                                 <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="email-inbox.html">Add/View Category</a></li>
+                                    <li><a href="{{ route('category.page') }}">Add/View Subject</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);"><i class="fi-layout"></i><span>Books</span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="{{ route('create.book') }}">Add Books</a></li>
+                                    <li><a href="{{ route('view.book') }}">View Books</a></li>
+                                    <li><a href="{{ route('show.soft.deleted.book') }}">Soft Deleted Books</a></li>
                                 </ul>
                             </li>
                             @endif
-
-                            <li>
-                                <a href="javascript: void(0);"><i class="fi-layout"></i><span> Layouts </span> <span class="menu-arrow"></span></a>
-                                <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="layouts-menucollapsed.html">Menu Collapsed</a></li>
-                                    <li><a href="layouts-small-menu.html">Small Menu</a></li>
-                                </ul>
-                            </li>
 
                             {{-- <li>
                                 <a href="javascript: void(0);"><i class="fi-briefcase"></i> <span> UI Elements </span> <span class="menu-arrow"></span></a>
@@ -327,7 +337,7 @@
                                 <div class="page-title-box">
                                     <h4 class="page-title">Dashboard </h4>
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item active">Welcome to Highdmin admin panel !</li>
+                                        <li class="breadcrumb-item active">Welcome to Highdmin panel</li>
                                     </ol>
                                 </div>
                             </li>
@@ -370,6 +380,28 @@
         <script src="{{ asset('dashboard_assets') }}/js/waves.js"></script>
         <script src="{{ asset('dashboard_assets') }}/js/jquery.slimscroll.js"></script>
 
+        <!-- Required datatable js -->
+        <script src="{{ asset('plugins') }}/datatables/jquery.dataTables.min.js"></script>
+        <script src="{{ asset('plugins') }}/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="{{ asset('plugins') }}/datatables/dataTables.buttons.min.js"></script>
+        <script src="{{ asset('plugins') }}/datatables/buttons.bootstrap4.min.js"></script>
+        <script src="{{ asset('plugins') }}/datatables/jszip.min.js"></script>
+        <script src="{{ asset('plugins') }}/datatables/pdfmake.min.js"></script>
+        <script src="{{ asset('plugins') }}/datatables/vfs_fonts.js"></script>
+        <script src="{{ asset('plugins') }}/datatables/buttons.html5.min.js"></script>
+        <script src="{{ asset('plugins') }}/datatables/buttons.print.min.js"></script>
+
+        <!-- Key Tables -->
+        <script src="{{ asset('plugins') }}/datatables/dataTables.keyTable.min.js"></script>
+
+        <!-- Responsive examples -->
+        <script src="{{ asset('plugins') }}/datatables/dataTables.responsive.min.js"></script>
+        <script src="{{ asset('plugins') }}/datatables/responsive.bootstrap4.min.js"></script>
+
+        <!-- Selection table -->
+        <script src="{{ asset('plugins') }}/datatables/dataTables.select.min.js"></script>
+
         <!-- Chart JS -->
         <script src="{{ asset('plugins') }}/chart.js/chart.bundle.js"></script>
         <script src="{{ asset('dashboard_assets') }}/pages/jquery.chartjs.init.js"></script>
@@ -395,5 +427,41 @@
         <script src="{{ asset('dashboard_assets') }}/js/jquery.core.js"></script>
         <script src="{{ asset('dashboard_assets') }}/js/jquery.app.js"></script>
 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                // Default Datatable
+                $('#datatable').DataTable();
+
+                //Buttons examples
+                var table = $('#datatable-buttons').DataTable({
+                    lengthChange: false,
+                    buttons: ['copy', 'excel', 'pdf']
+                });
+
+                // Key Tables
+
+                $('#key-table').DataTable({
+                    keys: true
+                });
+
+                // Responsive Datatable
+                $('#responsive-datatable').DataTable();
+
+                // Multi Selection Datatable
+                $('#selection-datatable').DataTable({
+                    select: {
+                        style: 'multi'
+                    }
+                });
+
+                table.buttons().container()
+                        .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+            } );
+
+        </script>
+        @yield('footer_script')
     </body>
 </html>

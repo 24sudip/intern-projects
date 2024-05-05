@@ -18,11 +18,17 @@ class UserController extends Controller
     function UserList(){
         $users = User::where('id','!=', Auth::id())->get();
         $total_user = User::count();
-        return view('admin.UserList', compact('users','total_user'));
+        if (Auth::user()->role == 'librarian') {
+            return view('admin.UserList', compact('users','total_user'));
+        } else {
+            return "<h1>Not Available</h1>";
+        }
     }
 
-    function UserDelete($userId){
-        User::find($userId)->delete();
+    function UserStatus(Request $request,$userId){
+        User::find($userId)->update([
+            'role'=>$request->role,
+        ]);
         return back();
     }
 
@@ -72,6 +78,14 @@ class UserController extends Controller
             return back()->with('PhotoEdtMsg','Profile Photo Updated Successfully');
         } else {
             return back()->with('PhotoErrMsg','Profile Photo Is Required');
+        }
+    }
+
+    function CategoryPage(){
+        if (Auth::user()->role == 'librarian') {
+            return view('admin.CategoryPage');
+        } else {
+            return "<h1>Not Available</h1>";
         }
     }
 }
