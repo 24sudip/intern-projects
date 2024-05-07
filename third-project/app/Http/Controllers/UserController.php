@@ -17,7 +17,7 @@ class UserController extends Controller
     }
 
     function users(){
-        $users = User::where('id','!=', Auth::id())->get();
+        $users = User::where('id','!=', Auth::id())->paginate(5);
         $total_user = User::count();
         return view('admin.user.users', compact('users','total_user'));
     }

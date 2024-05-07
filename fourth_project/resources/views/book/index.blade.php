@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-12 mt-5">
             <div class="card-box table-responsive">
-                <h4 class="m-t-0 header-title">Buttons example</h4>
+                <h4 class="m-t-0 header-title">List of Books</h4>
                 <p class="text-muted font-14 m-b-30">
                     The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
                 </p>
@@ -44,7 +44,7 @@
                                 <a href="{{ route('show.book', $book->id) }}" class="btn btn-sm btn-primary">Details</a>
                                 <a href="{{ route('soft.delete.book', $book->id) }}" class="btn btn-sm btn-warning">Soft Delete</a>
                                 <a href="#" class="btn btn-sm btn-danger del" data-link="{{ route('force.delete.book', $book->id) }}">Hard Delete</a>
-                                <a href="#" class="btn btn-sm btn-primary">Issue</a>
+                                <a href="{{ route('inventory.add', $book->id) }}" class="btn btn-sm btn-info">Issue</a>
                             </td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-secondary">Readers List</a>

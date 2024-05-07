@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController, UserController, BookController};
+use App\Http\Controllers\{HomeController, UserController, BookController, InventoryController};
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,3 +35,8 @@ Route::get('/show/soft/deleted/book', [BookController::class, 'showSoftDeletedBo
 Route::get('/restore/book/{id}', [BookController::class, 'RestoreBook'])->name('restore.book');
 Route::get('/force/delete/book/{id}', [BookController::class, 'ForceDeleteBook'])->name('force.delete.book');
 // Books
+
+// Borrow / Return
+Route::get('/inventory/add/{bookId}', [InventoryController::class, 'InventoryAdd'])->name('inventory.add');
+Route::post('/inventory/store', [InventoryController::class, 'InventoryStore'])->name('inventory.store');
+// Borrow / Return

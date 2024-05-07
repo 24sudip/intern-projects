@@ -58,7 +58,7 @@
                                     <td class="table-user">
                                         @if ($user->profile_photo)
                                         <img src="{{ asset('upload/profile_photos') }}/{{ $user->profile_photo }}" alt="table-user" class="mr-2 avatar-xs rounded-circle">
-                                        <a href="javascript:void(0);" class="text-body font-weight-semibold">
+                                        <a href="{{ route('personal.page', $user->id) }}" class="text-body font-weight-semibold">
                                             {{ $user->name }}
                                         </a>
                                         @else
@@ -89,6 +89,7 @@
                                 </tr>
                                 @endforeach
                             </tbody>
+                            {{ $users->onEachSide(1)->links() }}
                         </table>
                     </div>
 
@@ -97,6 +98,50 @@
 
             </div>
             <!--end card-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-xl-6">
+            <form class="form-group" action="{{ route('all.search') }}" method="post">
+                @csrf
+                <label>Search Any Blog By Date</label>
+                <input type="date" name="all_search" class="form-control">
+                <button type="submit" class="btn btn-info">Search</button>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div id="alternative-page-datatable_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                        <div class="row dt-row">
+                            <div class="col-sm-12">
+                                <table id="alternative-page-datatable" class="table dt-responsive nowrap w-100 dataTable no-footer dtr-inline" aria-describedby="alternative-page-datatable_info" style="width: 1192px;">
+                                    <thead>
+                                        <tr>
+                                            <th>SL</th>
+                                            <th class="sorting" tabindex="0" aria-controls="alternative-page-datatable" rowspan="1" colspan="1" aria-label="Title: activate to sort column ascending">Title</th>
+                                            <th class="sorting" tabindex="0" aria-controls="alternative-page-datatable" rowspan="1" colspan="1" aria-label="Title: activate to sort column ascending">Blogger Name</th>
+                                            <th class="sorting" tabindex="0" aria-controls="alternative-page-datatable" rowspan="1" colspan="1" aria-label="Title: activate to sort column ascending">Created At</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($all_blogs as $all_blog)
+                                        <tr class="odd">
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td tabindex="0">{{ $all_blog->blog_title }}</td>
+                                            <td tabindex="0">{{ $all_blog->relation_to_user->name }}</td>
+                                            <td tabindex="0">{{ $all_blog->created_at }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     @php

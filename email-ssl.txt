@@ -1,3 +1,25 @@
+$t->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+$t->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+$article->body = $request->body; $article->save();
+echo $dt->format('l jS \of F Y h:i:s A');
+Parse an English phrase into datetime ("first day of January 2016").
+Add and Subtract dates ("+ 2 weeks", "-6 months").
+$dt->toDateString();
+$dt->toFormattedDateString();
+$dt->toTimeString();
+$dt->toDateTimeString()
+$dt->toDayDateTimeString();
+$dt->year(2015)->month(4)->day(21)->hour(22)->minute(32)->second(5)->toDateTimeString();
+$dt->setDate(2015, 4, 21)->setTime(22, 32, 5)->toDateTimeString();
+$dt->setDateTime(2015, 4, 21, 22, 32, 5)->toDateTimeString();
+$interval = now()->addDays($request->interval)->endOfDay();
+        $orders = Order::where('created_at', '>', $interval)->get();
+        dd($orders);
+Order::selectRaw('count(*) as count, day(created_at) as date')
+    ->groupByRaw('DATE(created_at)')
+	->where('created_at', '>=', today()->subDays(30))
+    ->pluck('count', 'date');
+
 https://drive.google.com/drive/folders/1O1OPhWLfqqhHvE8G-G3_RUN7bLcOKf58?usp=sharing
 fourth_project
 maximum_books=5, maximum_days = 10;
@@ -5,7 +27,7 @@ users: role->librarian,member;=list/cancel-membership;
 books: subject_id, title, author, publication_date, rack_number, number_of_copy,book_photo
 format->hardcover, paperback, audiobook, eBook, newspaper, magazine, journal
 =crud
-Inventory: user_id, book_id, due_date, borrowing_date , return_date, over_due, status->borrowed/not-returned/returned;
+Inventory: user_id, book_id, due_date, borrowing_date , return_date, user_status->borrowed/not-returned/returned;
 ReservAvailMail,ReservCancelMail,OverdueMail;
 borrow,reserve,renew/reborrow,return
 //

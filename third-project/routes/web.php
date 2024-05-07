@@ -11,7 +11,7 @@ use App\Http\Controllers\{TagInventoryController, GroupInventoryController, Emai
 // });
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-// Route::post('/custom/login', [FrontendController::class, 'authenticate'])->name('custom.login');
+Route::post('/all/blog/search/result', [HomeController::class, 'AllSearch'])->name('all.search');
 
 // Frontend
 Route::get('/', [FrontendController::class, 'Index'])->name('blogger.home');

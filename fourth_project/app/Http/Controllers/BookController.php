@@ -80,7 +80,7 @@ class BookController extends Controller
     }
 
     function UpdateBook(Request $request, $id){
-        Book::find($id)->update([
+        Book::withTrashed()->find($id)->update([
             'format'=>$request->format,
             'subject_id'=>$request->subject_id,
             'title'=>$request->title,

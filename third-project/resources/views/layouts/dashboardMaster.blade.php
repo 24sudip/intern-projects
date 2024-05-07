@@ -372,7 +372,7 @@
                             </a>
                         </li>
 
-                        <li class="dropdown">
+                        {{-- <li class="dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <i class="mdi mdi-magnify font-size-24"></i>
                             </a>
@@ -381,10 +381,10 @@
                                     <input type="search" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
                                 </form>
                             </div>
-                        </li>
+                        </li> --}}
 
 
-                        <li class="dropdown d-none d-md-inline-block">
+                        {{-- <li class="dropdown d-none d-md-inline-block">
                             <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <img src="{{ asset('dashboard_assets') }}/images/flags/us.jpg" alt="user-image" class="me-0 me-sm-1" height="18">
                             </a>
@@ -411,9 +411,9 @@
                                 </a>
 
                             </div>
-                        </li>
+                        </li> --}}
 
-                        <li class="dropdown notification-list">
+                        {{-- <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <i class="mdi mdi-bell font-size-24"></i>
                                 <span class="badge bg-danger rounded-circle noti-icon-badge">9</span>
@@ -541,7 +541,7 @@
                                 </a>
 
                             </div>
-                        </li>
+                        </li> --}}
 
                         <li class="nav-link" id="theme-mode">
                             <i class="bx bx-moon font-size-24"></i>

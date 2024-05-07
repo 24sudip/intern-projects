@@ -12,6 +12,12 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset('dashboard_assets') }}/images/favicon.ico">
 
+        <!-- Plugins css-->
+        <link href="{{ asset('plugins') }}/bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet" />
+        <link href="{{ asset('plugins') }}/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
+        <link href="{{ asset('plugins') }}/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('plugins') }}/switchery/switchery.min.css">
+
         <!-- DataTables -->
         <link href="{{ asset('plugins') }}/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
         <link href="{{ asset('plugins') }}/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -219,14 +225,14 @@
 
                         <ul class="list-unstyled topbar-right-menu float-right mb-0">
 
-                            <li class="hide-phone app-search">
+                            {{-- <li class="hide-phone app-search">
                                 <form>
                                     <input type="text" placeholder="Search..." class="form-control">
                                     <button type="submit"><i class="fa fa-search"></i></button>
                                 </form>
-                            </li>
+                            </li> --}}
 
-                            <li class="dropdown notification-list">
+                            {{-- <li class="dropdown notification-list">
                                 <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
                                     <i class="fi-bell noti-icon"></i>
@@ -253,9 +259,9 @@
                                     </a>
 
                                 </div>
-                            </li>
+                            </li> --}}
 
-                            <li class="dropdown notification-list">
+                            {{-- <li class="dropdown notification-list">
                                 <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
                                    aria-haspopup="false" aria-expanded="false">
                                     <i class="fi-speech-bubble noti-icon"></i>
@@ -283,7 +289,7 @@
                                     </a>
 
                                 </div>
-                            </li>
+                            </li> --}}
 
                             <li class="dropdown notification-list">
                                 <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
@@ -379,6 +385,8 @@
         <script src="{{ asset('dashboard_assets') }}/js/metisMenu.min.js"></script>
         <script src="{{ asset('dashboard_assets') }}/js/waves.js"></script>
         <script src="{{ asset('dashboard_assets') }}/js/jquery.slimscroll.js"></script>
+
+        <script src="{{ asset('plugins') }}/select2/js/select2.min.js" type="text/javascript"></script>
 
         <!-- Required datatable js -->
         <script src="{{ asset('plugins') }}/datatables/jquery.dataTables.min.js"></script>
