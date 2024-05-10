@@ -39,4 +39,13 @@ Route::get('/force/delete/book/{id}', [BookController::class, 'ForceDeleteBook']
 // Borrow / Return
 Route::get('/inventory/add/{bookId}', [InventoryController::class, 'InventoryAdd'])->name('inventory.add');
 Route::post('/inventory/store', [InventoryController::class, 'InventoryStore'])->name('inventory.store');
+Route::get('/inventory/give/{invenId}', [InventoryController::class, 'InventoryGive'])->name('inventory.give');
+Route::get('/reader/list/{bookId}', [InventoryController::class, 'ReaderList'])->name('reader.list');
+Route::get('/overdue/list', [InventoryController::class, 'OverdueList'])->name('overdue.list');
+Route::get('/overdue/change/{invenId}', [InventoryController::class, 'OverdueChange'])->name('overdue.change');
 // Borrow / Return
+
+// Search
+Route::get('/search/book', [BookController::class, 'SearchBook'])->name('search.book');
+Route::post('/search/result', [BookController::class, 'SearchResult'])->name('search.result');
+// Search

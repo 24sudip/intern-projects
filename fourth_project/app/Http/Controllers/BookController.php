@@ -147,4 +147,20 @@ class BookController extends Controller
         $book->forceDelete();
         return back()->withSuccess('Book Deleted Successfully');
     }
+
+    function SearchBook(){
+        return view('search.book',[
+                'subjects'=>Subject::get(['id','subject_name']),
+        ]);
+    }
+
+    function SearchResult(Request $request){
+        $request->validate([
+            'search_text'=>'required',
+            'search_area'=>'required',
+        ]);
+        return view('search.result',[
+            'books'=>Book::where($request->search_area ,'like',"%{$request->search_text}%")->get(),
+        ]);
+    }
 }

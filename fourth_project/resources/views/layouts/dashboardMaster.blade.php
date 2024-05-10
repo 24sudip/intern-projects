@@ -78,7 +78,7 @@
 
                         <ul class="metismenu" id="side-menu">
 
-                            <!--<li class="menu-title">Navigation</li>-->
+                            {{-- <li class="menu-title">Navigation</li> --}}
 
                             <li>
                                 <a href="{{ route('home') }}">
@@ -87,6 +87,14 @@
                                     <span> Dashboard </span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="javascript: void(0);"><i class="fi-briefcase"></i> <span>Search Books</span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="{{ route('search.book') }}">Search By</a></li>
+                                    {{-- <li><a href="ui-cards.html">Cards</a></li> --}}
+                                </ul>
+                            </li>
+
                             @if (Auth::user()->role == 'librarian')
                             <li>
                                 <a href="javascript: void(0);"><i class="fi-layers"></i> <span> Users </span> <span class="menu-arrow"></span></a>
@@ -111,21 +119,12 @@
                                     <li><a href="{{ route('show.soft.deleted.book') }}">Soft Deleted Books</a></li>
                                 </ul>
                             </li>
-                            @endif
-
-                            {{-- <li>
-                                <a href="javascript: void(0);"><i class="fi-briefcase"></i> <span> UI Elements </span> <span class="menu-arrow"></span></a>
-                                <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="ui-typography.html">Typography</a></li>
-                                    <li><a href="ui-cards.html">Cards</a></li>
-                                </ul>
-                            </li> --}}
-
-                            {{-- <li>
-                                <a href="widgets.html">
-                                    <i class="fi-command"></i> <span> Widgets </span>
+                            <li>
+                                <a href="{{ route('overdue.list') }}">
+                                    <i class="fi-command"></i> <span>Overdue List</span>
                                 </a>
-                            </li> --}}
+                            </li>
+                            @endif
 
                             {{-- <li>
                                 <a href="javascript: void(0);"><i class="fi-bar-graph-2"></i><span> Charts </span> <span class="menu-arrow"></span></a>

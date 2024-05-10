@@ -22,6 +22,10 @@
                 <div class="alert bg-success text-white">{{ session('boroAdMsg') }}</div>
                 @endif
 
+                @if (session('retnMsg'))
+                <div class="alert bg-info text-white">{{ session('retnMsg') }}</div>
+                @endif
+
                 @if ($errors->any())
                 <div class="alert bg-danger text-white">
                     <ul>
@@ -45,6 +49,10 @@
                         <input type="text" class="form-control" value="{{ $book->author }}">
                     </div>
                     <div class="form-group">
+                        <label>Total number of copy</label>
+                        <input type="text" class="form-control" value="{{ $book->number_of_copy }}">
+                    </div>
+                    <div class="form-group">
                         <label>User</label>
                         <select name="user_id" class="form-control select2">
                             <option value="">Select Reader's Name</option>
@@ -53,8 +61,11 @@
                             @endforeach
                         </select>
                     </div>
-
+                    @if ($inventories->count() == $book->number_of_copy)
+                    No more copies available
+                    @else
                     <button type="submit" class="btn btn-primary">Borrow</button>
+                    @endif
                 </form>
             </div>
         </div>
@@ -71,14 +82,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($inventories as $inventori)
+                            @forelse ($inventories as $inventori)
                             <tr>
                                 <th scope="row">{{ $inventori->rel_to_user->name }}</th>
                                 <td>{{ $inventori->borrow_date }}</td>
                                 <td>{{ $inventori->due_date }}</td>
-                                <td><a href="#" class="btn btn-success">Return</a></td>
+                                <td><a href="{{ route('inventory.give',$inventori->id) }}" class="btn btn-success">Return</a></td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td>No Borrower Available</td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

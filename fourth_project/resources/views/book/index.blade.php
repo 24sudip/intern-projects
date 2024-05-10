@@ -47,7 +47,7 @@
                                 <a href="{{ route('inventory.add', $book->id) }}" class="btn btn-sm btn-info">Issue</a>
                             </td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-secondary">Readers List</a>
+                                <a href="{{ route('reader.list', $book->id) }}" class="btn btn-sm btn-secondary">Readers List</a>
                             </td>
                             <td>{{ $book->number_of_copy }}</td>
                             <td>{{ $book->rack_number }}</td>
