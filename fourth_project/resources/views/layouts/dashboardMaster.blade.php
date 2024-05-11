@@ -91,7 +91,7 @@
                                 <a href="javascript: void(0);"><i class="fi-briefcase"></i> <span>Search Books</span> <span class="menu-arrow"></span></a>
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li><a href="{{ route('search.book') }}">Search By</a></li>
-                                    {{-- <li><a href="ui-cards.html">Cards</a></li> --}}
+                                    <li><a href="{{ route('all.book') }}">All Books</a></li>
                                 </ul>
                             </li>
 

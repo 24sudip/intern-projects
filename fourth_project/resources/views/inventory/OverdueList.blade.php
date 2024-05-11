@@ -16,12 +16,13 @@
 </ul>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-6 mt-4">
+        <div class="col-lg-8 mt-4">
             <div class="card">
                 <div class="card-body">
                     <table class="table table-bordered table-striped mb-0">
                         <thead>
                             <tr>
+                            <th scope="col">Book Title</th>
                             <th scope="col">Reader</th>
                             <th scope="col">Borrow Date</th>
                             <th scope="col">Due Date</th>
@@ -32,6 +33,7 @@
                         <tbody>
                             @forelse ($overdues as $inventori)
                             <tr>
+                                <th scope="row">{{ $inventori->rel_to_book->title }}</th>
                                 <th scope="row">{{ $inventori->rel_to_user->name }}</th>
                                 <td>{{ $inventori->borrow_date }}</td>
                                 <td>{{ $inventori->due_date }}</td>

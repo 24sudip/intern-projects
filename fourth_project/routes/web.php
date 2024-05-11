@@ -47,5 +47,7 @@ Route::get('/overdue/change/{invenId}', [InventoryController::class, 'OverdueCha
 
 // Search
 Route::get('/search/book', [BookController::class, 'SearchBook'])->name('search.book');
+Route::get('/all/book', [BookController::class, 'AllBook'])->name('all.book');
 Route::post('/search/result', [BookController::class, 'SearchResult'])->name('search.result');
+Route::post('/search/subject', [BookController::class, 'SearchSubject'])->name('search.subject');
 // Search

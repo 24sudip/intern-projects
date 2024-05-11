@@ -17,16 +17,24 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-6">
-            <div class="card-header">
-                Search By Subject Categories
+            <div class="card-box mt-4">
+                <form role="form" action="{{ route('search.subject') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label>Search By Subject Categories</label>
+                        <select name="subject_id" class="form-control">
+                            <option value="">Select A Subject</option>
+                            @foreach ($subjects as $subject)
+                            <option value="{{ $subject->id }}">{{ $subject->subject_name }}</option>
+                            @endforeach
+                        </select>
+                        @error('subject_id')
+                        <div class="alert bg-danger text-white">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
-            <div class="card-body">
-                @foreach ($subjects as $subject)
-                <a href="#" class="bg-success text-white">{{ $subject->subject_name }}</a>
-                @endforeach
-            </div>
-        </div>
-        <div class="col-lg-6">
             <div class="card-box mt-4">
 
                 @if ($errors->any())
@@ -43,7 +51,7 @@
                 <form role="form" action="{{ route('search.result') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label>Write Title/Author/Publication Date</label>
+                        <label>Write Title/Author/Publication Date(yyyy-mm-dd)</label>
                         <input type="text" name="search_text" class="form-control" placeholder="Type Here">
                     </div>
                     <div class="form-group">

@@ -22,6 +22,7 @@
                     <table class="table table-bordered table-striped mb-0">
                         <thead>
                             <tr>
+                            <th scope="col">Book Title</th>
                             <th scope="col">Reader</th>
                             <th scope="col">Borrow Date</th>
                             <th scope="col">Due Date</th>
@@ -31,6 +32,7 @@
                         <tbody>
                             @forelse ($inventories as $inventori)
                             <tr>
+                                <th scope="row">{{ $inventori->rel_to_book->title }}</th>
                                 <th scope="row">{{ $inventori->rel_to_user->name }}</th>
                                 <td>{{ $inventori->borrow_date }}</td>
                                 <td>{{ $inventori->due_date }}</td>

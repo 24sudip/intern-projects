@@ -14,4 +14,8 @@ class Inventory extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function rel_to_book()
+    {
+        return $this->belongsTo(Book::class, 'book_id');
+    }
 }

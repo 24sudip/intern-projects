@@ -163,4 +163,19 @@ class BookController extends Controller
             'books'=>Book::where($request->search_area ,'like',"%{$request->search_text}%")->get(),
         ]);
     }
+
+    function SearchSubject(Request $request){
+        $request->validate([
+            'subject_id'=>'required'
+        ]);
+        return view('search.subject',[
+            'books'=>Book::where('subject_id',$request->subject_id)->get(),
+        ]);
+    }
+
+    function AllBook(){
+        return view('search.AllBooks',[
+            'books'=>Book::all(),
+        ]);
+    }
 }
