@@ -16,20 +16,8 @@
 
                         <p class="text-muted w-75 mx-auto sp-line-2">Traditional heading
                             elements are
-                            designed to work best in the meat of your page content.</p>
-
-                        <div class="row mt-3">
-                            <div class="col-6">
-                                <p class="text-muted font-15 mb-1 text-truncate">Target</p>
-                                <h4><i class="fas fa-arrow-up text-success me-1"></i>Add any</h4>
-
-                            </div>
-                            <div class="col-6">
-                                <p class="text-muted font-15 mb-1 text-truncate">Last week</p>
-                                <h4><i class="fas fa-arrow-down text-danger me-1"></i>No news</h4>
-                            </div>
-
-                        </div>
+                            designed to work best in the meat of your page content.
+                        </p>
                     </div>
                 </div> <!--end card body-->
             </div> <!-- end card-->
