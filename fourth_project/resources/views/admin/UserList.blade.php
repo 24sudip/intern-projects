@@ -2,7 +2,7 @@
 @extends('layouts.dashboardMaster')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-lg-10 m-auto">
             <div class="card">
@@ -17,6 +17,7 @@
                             <th>Email</th>
                             <th>Status</th>
                             <th>Action</th>
+                            <th>Records</th>
                         </tr>
                         @foreach($users as $user)
                         <tr>
@@ -38,9 +39,11 @@
                                     </div>
                                 </form>
                             </td>
+                            <td><a href="{{ route('user.records',$user->id) }}" class="btn btn-success">Book Records</a></td>
                         </tr>
                         @endforeach
                     </table>
+                    {{ $users->onEachSide(1)->links() }}
                 </div>
             </div>
         </div>

@@ -50,7 +50,7 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="index.html" class="logo">
+                        <a href="{{ url('/') }}" class="logo">
                             <span>
                                 <img src="{{ asset('dashboard_assets') }}/images/logo.png" alt="" height="22">
                             </span>

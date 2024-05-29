@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class InventoryController extends Controller
 {
+    public function guest(){
+        return view('layouts.guest');
+    }
+    
     function InventoryAdd($bookId){
         if (Auth::user()->role == 'librarian') {
             return view('inventory.add',[

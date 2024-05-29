@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{HomeController, UserController, BookController, InventoryController};
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.guest');
 });
 
 Auth::routes();
@@ -14,6 +14,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 // User
 Route::get('/user/list', [UserController::class, 'UserList'])->name('user.list');
 Route::post('/user/status/{userId}', [UserController::class, 'UserStatus'])->name('user.status');
+Route::get('/user/records/{userId}', [UserController::class, 'UserRecords'])->name('user.records');
 Route::get('/edit/profile', [UserController::class, 'EditProfile'])->name('edit.profile');
 Route::post('/profile/update', [UserController::class, 'ProfileUpdate'])->name('profile.update');
 Route::post('/update/profile/photo', [UserController::class, 'UpdateProfilePhoto'])->name('update.profile.photo');

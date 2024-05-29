@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\{User, Inventory};
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -16,7 +16,7 @@ class UserController extends Controller
     }
 
     function UserList(){
-        $users = User::where('id','!=', Auth::id())->get();
+        $users = User::where('id','!=', Auth::id())->paginate(5);
         $total_user = User::count();
         if (Auth::user()->role == 'librarian') {
             return view('admin.UserList', compact('users','total_user'));
@@ -87,5 +87,15 @@ class UserController extends Controller
         } else {
             return "<h1>Not Available</h1>";
         }
+    }
+
+    public function UserRecords($userId){
+        return view('admin.UserRecords',[
+            'borrowed_books'=>Inventory::where('user_id',$userId)->where('user_status','borrowed')->where('due_date','>',now())->count(),
+            'not_returned_books'=>Inventory::where('user_id',$userId)->where('user_status','borrowed')->where('due_date','<',now())->count(),
+            'returned_books'=>Inventory::where('user_id',$userId)->where('user_status','returned')->count(),
+            'total_books'=>Inventory::where('user_id',$userId)->get(),
+            'user'=>User::find($userId),
+        ]);
     }
 }
