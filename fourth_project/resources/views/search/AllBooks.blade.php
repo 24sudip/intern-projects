@@ -30,6 +30,7 @@
                             <th>Subject Category</th>
                             <th>Author</th>
                             <th>Publication Date</th>
+                            <th>Details</th>
                             <th>Price</th>
                         </tr>
                     </thead>
@@ -44,6 +45,7 @@
 
                             <td>{{ $book->author }}</td>
                             <td>{{ $book->publication_date }}</td>
+                            <td><a href="{{ route('show.book',$book->id) }}" class="btn btn-primary">Details</a></td>
                             <td>{{ $book->price }}</td>
                         </tr>
                         @endforeach
